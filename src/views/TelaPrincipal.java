@@ -30,28 +30,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMICadastroPessoa = new javax.swing.JMenuItem();
+        jMICadastroRenda = new javax.swing.JMenuItem();
+        jMICadastroDividas = new javax.swing.JMenuItem();
+        jMSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Cadastros");
 
-        jMenuItem1.setText("Cadastro de Pessoa");
-        jMenu1.add(jMenuItem1);
+        jMICadastroPessoa.setText("Cadastro de Pessoa");
+        jMenu1.add(jMICadastroPessoa);
 
-        jMenuItem2.setText("Cadastro de Dividas");
-        jMenu1.add(jMenuItem2);
+        jMICadastroRenda.setText("Cadastro de Renda");
+        jMenu1.add(jMICadastroRenda);
 
-        jMenuItem3.setText("Cadastro de Renda");
-        jMenu1.add(jMenuItem3);
+        jMICadastroDividas.setText("Cadastro de Dividas");
+        jMenu1.add(jMICadastroDividas);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Sobre");
-        jMenuBar1.add(jMenu2);
+        jMSobre.setText("Sobre");
+        jMenuBar1.add(jMSobre);
 
         setJMenuBar(jMenuBar1);
 
@@ -106,11 +106,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMICadastroDividas;
+    private javax.swing.JMenuItem jMICadastroPessoa;
+    private javax.swing.JMenuItem jMICadastroRenda;
+    private javax.swing.JMenu jMSobre;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }
