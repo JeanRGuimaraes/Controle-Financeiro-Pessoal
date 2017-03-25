@@ -5,17 +5,22 @@
  */
 package views;
 
+import eventos.clBotoesTelaPrincipal;
+
 /**
  *
  * @author emerson-opensuse
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    private clBotoesTelaPrincipal eventosBotao;
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        
+        AdicionandoActionListerBotoes();
     }
 
     /**
@@ -27,16 +32,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        JAreaDeTrabalho = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMICadastroPessoa = new javax.swing.JMenuItem();
         jMICadastroRenda = new javax.swing.JMenuItem();
         jMICadastroDividas = new javax.swing.JMenuItem();
-        jMSobre = new javax.swing.JMenu();
+        Jmenu2 = new javax.swing.JMenu();
+        jMISobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CFP - Controle Financeiro Pessoal");
+        setExtendedState(6);
 
         jMenu1.setText("Cadastros");
 
@@ -51,8 +58,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMSobre.setText("Sobre");
-        jMenuBar1.add(jMSobre);
+        Jmenu2.setText("Ajuda");
+
+        jMISobre.setText("Sobre");
+        Jmenu2.add(jMISobre);
+
+        jMenuBar1.add(Jmenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -60,14 +71,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+            .addComponent(JAreaDeTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+            .addComponent(JAreaDeTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -101,16 +113,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
+                
             }
         });
     }
+    
+    public void AdicionandoActionListerBotoes()
+    {
+        eventosBotao = new clBotoesTelaPrincipal(jMICadastroPessoa, jMICadastroRenda, jMICadastroDividas, jMISobre);
+        eventosBotao.setJAreaDeTrabalho(JAreaDeTrabalho);
+        jMICadastroPessoa.addActionListener(eventosBotao);
+        jMICadastroRenda.addActionListener(eventosBotao);
+        jMICadastroDividas.addActionListener(eventosBotao);
+        jMISobre.addActionListener(eventosBotao);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane JAreaDeTrabalho;
+    private javax.swing.JMenu Jmenu2;
     private javax.swing.JMenuItem jMICadastroDividas;
     private javax.swing.JMenuItem jMICadastroPessoa;
     private javax.swing.JMenuItem jMICadastroRenda;
-    private javax.swing.JMenu jMSobre;
+    private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables

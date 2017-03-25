@@ -1,47 +1,86 @@
-
 package eventos;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JMenu;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
+import views.CadastroDivida;
+import views.CadastroPessoa;
+import views.CadastroRenda;
+import views.Sobre;
 
+public class clBotoesTelaPrincipal implements ActionListener {
 
-public class clBotoesTelaPrincipal implements ActionListener{
+    private JMenuItem JMIcadastroPessoa, JMIcadastroRenda, JMIcadastroDivida, jMISobre;
+    private JDesktopPane JAreaDeTrabalho;
 
-    private JMenuItem JMIcadastroPessoa, JMIcadastroRenda, JMIcadastroDivida;
-    private JMenu JMsobre;
-    
-    public clBotoesTelaPrincipal(JMenuItem JMIcadastroPessoa, JMenuItem JMIcadastroRenda, JMenuItem JMIcadastroDivida, JMenu JMsobre)
-    {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == JMIcadastroPessoa) {
+            abrirJanelaCadastroPessoa();
+        }
+
+        if (e.getSource() == JMIcadastroRenda) {
+            abrirJanelaRenda();
+        }
+
+        if (e.getSource() == JMIcadastroDivida) {
+            abrirJanelaCadastroDivida();
+        }
+
+        if (e.getSource() == jMISobre) {
+            abrirJanelaSobre();
+        }
+    }
+
+    public clBotoesTelaPrincipal(JMenuItem JMIcadastroPessoa, JMenuItem JMIcadastroRenda, JMenuItem JMIcadastroDivida, JMenuItem jMISobre) {
         this.JMIcadastroPessoa = JMIcadastroPessoa;
         this.JMIcadastroDivida = JMIcadastroDivida;
         this.JMIcadastroRenda = JMIcadastroRenda;
-        this.JMsobre = JMsobre;
+        this.jMISobre = jMISobre;
     }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if(e.getSource() == JMIcadastroPessoa)
-        {
-            //action do botão cadastro Pessoa
-        }
-        
-        if(e.getSource() == JMIcadastroRenda)
-        {
-            //action do botão cadastro renda
-        }
-        
-        if(e.getSource() == JMIcadastroDivida)
-        {
-            //action do botão cadastro divida
-        }
-        
-        if(e.getSource() == JMsobre)
-        {
-            //action do botão sobre
-        }
+
+    public void setJAreaDeTrabalho(JDesktopPane JAreaDeTrabalho) {
+        this.JAreaDeTrabalho = JAreaDeTrabalho;
     }
-    
+
+    private void abrirJanelaCadastroPessoa() {
+        CadastroPessoa novo = new CadastroPessoa();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    private void abrirJanelaCadastroDivida() {
+        CadastroDivida novo = new CadastroDivida();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    private void abrirJanelaRenda() {
+        CadastroRenda novo = new CadastroRenda();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    private void abrirJanelaSobre() {
+        Sobre novo = new Sobre();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    //Função que centraliza internaljframe
+    private void centralizaForm(JInternalFrame frame) {
+        Dimension desktopSize = JAreaDeTrabalho.getSize();
+        Dimension jInternalFrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
+    }
+
 }
