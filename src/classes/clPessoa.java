@@ -29,6 +29,7 @@ public class clPessoa {
         this.strGenero = "";
         this.strEmail = "";
         this.strProfissao = "";
+        JOptionPane.showMessageDialog(null, "Pessoa Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
@@ -64,7 +65,7 @@ public class clPessoa {
         }
 
         if (erro.length() > 1) {
-            JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 

@@ -36,6 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMSobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CFP - Controle Financeiro Pessoal");
 
         jMenu1.setText("Cadastros");
 
