@@ -6,6 +6,7 @@
 package views;
 import classes.clDivida;
 import eventos.clBotoesDivida;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +18,39 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     
     public clDivida getDivida(){
         //alimentar o objeto com informacoes do textField
-        return new clDivida();
+        clDivida divida = new clDivida();
+        if(verificaDados())
+        {
+            divida.setiCod_divida(Integer.parseInt(txtCodigo.getText()));
+            divida.setStrDescricao(txtDescricao.getText());
+            divida.setfValor(Float.parseFloat(txtValor.getText()));
+            divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
+            divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
+            divida.setStrStatus(txtStatus.getText());
+        }
+        return divida;
+    }
+    
+    public clDivida limparCampos()
+    {
+        clDivida divida = new clDivida();
+        
+            txtCodigo.setText("");
+            txtDescricao.setText("");
+            txtValor.setText("");
+            txtmPeriodoInicial.setText("");
+            txtmPeriodoFinal.setText("");
+            txtStatus.setText("");
+            
+        return divida;
+    }
+    
+    public clDivida apagarDivida(clDivida divida)
+    {
+        divida.apagarDivida();
+        divida = limparCampos();
+
+        return divida;
     }
     
     
@@ -26,6 +59,11 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
      */
     public CadastroDivida() {
         initComponents();
+        
+        btnCadastrar.addActionListener(botoes);
+        btnCancelar.addActionListener(botoes);
+        btnExcluir.addActionListener(botoes);
+        btnLimpar.addActionListener(botoes);
     }
 
     /**
@@ -48,12 +86,12 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         txtValor = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        txtmPeriodo1 = new javax.swing.JFormattedTextField();
+        txtmPeriodoInicial = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtmPeriodo2 = new javax.swing.JFormattedTextField();
+        txtmPeriodoFinal = new javax.swing.JFormattedTextField();
+        txtCodigo = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Cadastro de Dívida");
@@ -70,12 +108,11 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
 
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setActionCommand("cadastrar");
-
         /*
         */
 
         btnExcluir.setText("Excluir");
-        btnExcluir.setActionCommand("btnExcluir");
+        btnExcluir.setActionCommand("excluir");
         /*
         */
 
@@ -84,13 +121,13 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         jLabel1.setText("Codigo:");
 
         btnCancelar.setText("Cancelar");
-        /*
-        */
+        btnCancelar.setActionCommand("cancelar");
 
         btnLimpar.setText("Limpar");
+        btnLimpar.setActionCommand("limpar");
 
         try {
-            txtmPeriodo1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtmPeriodoInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -98,7 +135,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         jLabel2.setText("á");
 
         try {
-            txtmPeriodo2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtmPeriodoFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -109,7 +146,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1Nome10)
@@ -123,32 +160,30 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                             .addComponent(txtStatus)
                             .addComponent(txtValor)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtmPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtmPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtmPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtmPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodigo)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,21 +196,21 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Nome11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtmPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtmPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txtmPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtmPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(btnLimpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnCancelar))
-                .addGap(89, 89, 89))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnCadastrar))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,15 +221,46 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+     private boolean verificaDados() {
+        String erro = "";
+        
+        if (!txtCodigo.getText().matches("^[0-9]*$") || txtValor.getText().isEmpty()) {
+            erro += "\n- Campo de Codigo";
+        }
+        
+        if (!txtValor.getText().replace(".", "").matches("^[0-9]*$") || txtValor.getText().isEmpty()) {
+            erro += "\n- Campo de Valor";
+        }
+
+        if (txtDescricao.getText().equals("")) {
+            erro += "\n- Campo de Descrição";
+        }
+
+        if (txtmPeriodoInicial.getText().equals("  /  /    ")) {
+            erro += "\n- Campo do Periodo Inicial";
+        }
+        
+        if (txtmPeriodoFinal.getText().equals("  /  /    ")) {
+            erro += "\n- Campo do Periodo Final";
+        }
+
+        if (txtStatus.getText().equals("")) {
+            erro += "\n- Campo de Status";
+        }
+
+        if (erro.length() > 1) {
+            JOptionPane.showMessageDialog(null, "Os seguintes Campos estão invalidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
@@ -212,7 +278,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtValor;
-    private javax.swing.JFormattedTextField txtmPeriodo1;
-    private javax.swing.JFormattedTextField txtmPeriodo2;
+    private javax.swing.JFormattedTextField txtmPeriodoFinal;
+    private javax.swing.JFormattedTextField txtmPeriodoInicial;
     // End of variables declaration//GEN-END:variables
 }

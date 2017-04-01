@@ -21,14 +21,26 @@ public class clBotoesDivida implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if("cadastrar".equals(e.getActionCommand())) {
-            clDivida divida = cadastroDivida.getDivida();
-            System.out.println(divida.toString());
+            this.divida = this.cadastroDivida.getDivida();
+            this.divida.salvarDivida();
             
             //new DividaDao().insert(divida);
-            
         }
         
-       
+        if("cancelar".equals(e.getActionCommand()))
+        {
+            this.cadastroDivida.dispose();
+        }
+        
+        if("limpar".equals(e.getActionCommand()))
+        {
+            this.divida = this.cadastroDivida.limparCampos();
+        }
+        
+        if("excluir".equals(e.getActionCommand()))
+        {
+            this.divida = this.cadastroDivida.apagarDivida(this.divida);
+        }
     }
     
     

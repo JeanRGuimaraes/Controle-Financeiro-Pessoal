@@ -6,16 +6,18 @@ public class clDivida {
 
     private int iCod_divida = 0;
     private float fValor = -1;
-    private String strDescricao = "", strPeriodo1 = "", strPeriodo2 = "", strStatus = "";
+    private String strDescricao = "", strPeriodoInicial = "", strPeriodoFinal = "", strStatus = "";
 
     public void salvarDivida() {
         if (verificaDados()) {
             System.out.println("Código: " + iCod_divida + 1);
             System.out.println("Valor: " + fValor);
             System.out.println("Descrição: " + strDescricao);
-            System.out.println("Periodo1: " + strPeriodo1);
-            System.out.println("Perido2" + strPeriodo2);
+            System.out.println("Periodo1: " + strPeriodoInicial);
+            System.out.println("Perido2" + strPeriodoFinal);
             System.out.println("Status: " + strStatus);
+            
+            JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -23,8 +25,8 @@ public class clDivida {
         iCod_divida = 0;
         fValor = -1;
         strDescricao = "";
-        strPeriodo1 = "";
-        strPeriodo2 = "";
+        strPeriodoInicial = "";
+        strPeriodoFinal = "";
         strStatus = "";
         JOptionPane.showMessageDialog(null, "Divida Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -40,12 +42,12 @@ public class clDivida {
             erro += "Campo de Descrição";
         }
 
-        if (strPeriodo1.equals("")) {
-            erro += "Campo do Periodo1";
+        if (strPeriodoInicial.equals("")) {
+            erro += "Campo do Periodo Inicial";
         }
         
-        if (strPeriodo2.equals("")) {
-            erro += "Campo do Periodo2";
+        if (strPeriodoFinal.equals("")) {
+            erro += "Campo do Periodo Final";
         }
 
         if (strStatus.equals("")) {
@@ -53,7 +55,7 @@ public class clDivida {
         }
 
         if (erro.length() > 1) {
-            JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+           // JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -85,20 +87,20 @@ public class clDivida {
         this.strDescricao = strDescricao;
     }
 
-    public String getStrPeriodo1() {
-        return strPeriodo1;
+    public String getStrPeriodoInicial() {
+        return strPeriodoInicial;
     }
 
-    public void setStrPeriodo1(String strPeriodo) {
-        this.strPeriodo1 = strPeriodo;
+    public void setStrPeriodoInicial(String strPeriodoInicial) {
+        this.strPeriodoInicial = strPeriodoInicial;
     }
     
-        public String getStrPeriodo2() {
-        return strPeriodo2;
+        public String getStrPeriodoFinal() {
+        return strPeriodoFinal;
     }
 
-    public void setStrPeriodo2(String strPeriodo) {
-        this.strPeriodo2 = strPeriodo;
+    public void setStrPeriodoFinal(String strPeriodoFinal) {
+        this.strPeriodoFinal = strPeriodoFinal;
     }
 
     public String getStrStatus() {
