@@ -17,6 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         
+        
         AdicionandoActionListerBotoes();
     }
 
@@ -105,14 +106,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+              //  new TelaPrincipal().setVisible(true);
+                TelaPrincipal tela = new TelaPrincipal();
+                tela.setVisible(true);
+                tela.abrirLogin();
                 
             }
         });
+    }
+    
+    public void abrirLogin()
+    {
+          TelaLogin login = new TelaLogin(this, true);
+          login.setVisible(true);
     }
     
     public void AdicionandoActionListerBotoes()
