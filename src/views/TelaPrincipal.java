@@ -7,10 +7,7 @@ package views;
 
 import eventos.clBotoesTelaPrincipal;
 
-/**
- *
- * @author emerson-opensuse
- */
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
     private clBotoesTelaPrincipal eventosBotao;

@@ -1,40 +1,35 @@
 
 package eventos;
 
+import classes.clDivida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import views.CadastroDivida;
 
 
 public class clBotoesDivida implements ActionListener{
-
-    private JButton salvar, apagar, cancelar;
     
-    public clBotoesDivida(JButton salvar, JButton apagar, JButton cancelar)
-    {
-        this.salvar = salvar;
-        this.apagar = apagar;
-        this.cancelar = cancelar;
+    private clDivida divida;
+    
+    private CadastroDivida cadastroDivida;
+    
+    public clBotoesDivida(CadastroDivida cadastroDivida) {
+        this.cadastroDivida = cadastroDivida;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getSource() == salvar)
-        {
-            //action do botão salvar
+        if("cadastrar".equals(e.getActionCommand())) {
+            clDivida divida = cadastroDivida.getDivida();
+            System.out.println(divida.toString());
+            
+            //new DividaDao().insert(divida);
+            
         }
         
-        if(e.getSource() == apagar)
-        {
-            //action do botão apagar
-        }
-        
-        if(e.getSource() == cancelar)
-        {
-            //action do botão cancelar
-        }
        
     }
+    
     
 }

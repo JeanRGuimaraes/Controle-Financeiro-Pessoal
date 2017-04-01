@@ -6,14 +6,15 @@ public class clDivida {
 
     private int iCod_divida = 0;
     private float fValor = -1;
-    private String strDescricao = "", strPeriodo = "", strStatus = "";
+    private String strDescricao = "", strPeriodo1 = "", strPeriodo2 = "", strStatus = "";
 
     public void salvarDivida() {
         if (verificaDados()) {
             System.out.println("Código: " + iCod_divida + 1);
             System.out.println("Valor: " + fValor);
             System.out.println("Descrição: " + strDescricao);
-            System.out.println("Periodo: " + strPeriodo);
+            System.out.println("Periodo1: " + strPeriodo1);
+            System.out.println("Perido2" + strPeriodo2);
             System.out.println("Status: " + strStatus);
         }
     }
@@ -22,7 +23,8 @@ public class clDivida {
         iCod_divida = 0;
         fValor = -1;
         strDescricao = "";
-        strPeriodo = "";
+        strPeriodo1 = "";
+        strPeriodo2 = "";
         strStatus = "";
         JOptionPane.showMessageDialog(null, "Divida Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -38,8 +40,12 @@ public class clDivida {
             erro += "Campo de Descrição";
         }
 
-        if (strPeriodo.equals("")) {
-            erro += "Campo do Periodo";
+        if (strPeriodo1.equals("")) {
+            erro += "Campo do Periodo1";
+        }
+        
+        if (strPeriodo2.equals("")) {
+            erro += "Campo do Periodo2";
         }
 
         if (strStatus.equals("")) {
@@ -79,12 +85,20 @@ public class clDivida {
         this.strDescricao = strDescricao;
     }
 
-    public String getStrPeriodo() {
-        return strPeriodo;
+    public String getStrPeriodo1() {
+        return strPeriodo1;
     }
 
-    public void setStrPeriodo(String strPeriodo) {
-        this.strPeriodo = strPeriodo;
+    public void setStrPeriodo1(String strPeriodo) {
+        this.strPeriodo1 = strPeriodo;
+    }
+    
+        public String getStrPeriodo2() {
+        return strPeriodo2;
+    }
+
+    public void setStrPeriodo2(String strPeriodo) {
+        this.strPeriodo2 = strPeriodo;
     }
 
     public String getStrStatus() {
