@@ -1,31 +1,38 @@
 
 package eventos;
 
+import classes.clLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import views.TelaLogin;
 
 
 public class clBotoesLogin implements ActionListener{
 
-     private JButton ok, cancela;
+     private TelaLogin telaLogin;
+     private clLogin login;
+     
 	
-	public clBotoesLogin(JButton ok, JButton cancela){
-		this.ok = ok;
-		this.cancela = cancela;
+	public clBotoesLogin(TelaLogin telaLogin){
+            this.telaLogin = telaLogin;
 	}
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getSource() == ok)
+        if("ok".equals(e.getActionCommand()))
         {
-            //evento do botão ok
+            login = telaLogin.verificarUsuario();
+            
+            if(login.verficarUsuario())
+            {
+                telaLogin.dispose();
+            }
         }
         
-        if(e.getSource() == cancela)
+        if("cancelar".equals(e.getActionCommand()))
         {
-            //evento do botao cancelar
+            telaLogin.encerrarPrograma();
         }
     }
     
