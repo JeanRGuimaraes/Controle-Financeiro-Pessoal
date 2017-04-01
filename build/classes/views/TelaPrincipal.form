@@ -13,16 +13,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Pessoa"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMICadastroPessoa.setActionCommand(&quot;cadastro_pessoa&quot;);"/>
+              </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMICadastroRenda">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Renda"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMICadastroRenda.setActionCommand(&quot;cadastro_renda&quot;);"/>
+              </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMICadastroDividas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Dividas"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMICadastroDividas.setActionCommand(&quot;cadastro_dividas&quot;);"/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -35,6 +44,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMISobre.setActionCommand(&quot;sobre&quot;);"/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>

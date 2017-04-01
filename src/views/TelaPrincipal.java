@@ -6,11 +6,13 @@
 package views;
 
 import eventos.clBotoesTelaPrincipal;
+import java.awt.Dimension;
+import javax.swing.JInternalFrame;
 
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    private clBotoesTelaPrincipal eventosBotao;
+    private clBotoesTelaPrincipal eventosBotao = new clBotoesTelaPrincipal(this);
     /**
      * Creates new form TelaPrincipal
      */
@@ -18,7 +20,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         
         
-        AdicionandoActionListerBotoes();
+        jMICadastroPessoa.addActionListener(eventosBotao);
+        jMICadastroRenda.addActionListener(eventosBotao);
+        jMICadastroDividas.addActionListener(eventosBotao);
+        jMISobre.addActionListener(eventosBotao);
     }
 
     /**
@@ -46,12 +51,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cadastros");
 
         jMICadastroPessoa.setText("Cadastro de Pessoa");
+        jMICadastroPessoa.setActionCommand("cadastro_pessoa");
         jMenu1.add(jMICadastroPessoa);
 
         jMICadastroRenda.setText("Cadastro de Renda");
+        jMICadastroRenda.setActionCommand("cadastro_renda");
         jMenu1.add(jMICadastroRenda);
 
         jMICadastroDividas.setText("Cadastro de Dividas");
+        jMICadastroDividas.setActionCommand("cadastro_dividas");
         jMenu1.add(jMICadastroDividas);
 
         jMenuBar1.add(jMenu1);
@@ -59,6 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jmenu2.setText("Ajuda");
 
         jMISobre.setText("Sobre");
+        jMISobre.setActionCommand("sobre");
         Jmenu2.add(jMISobre);
 
         jMenuBar1.add(Jmenu2);
@@ -125,15 +134,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
           TelaLogin login = new TelaLogin(this, true);
           login.setVisible(true);
     }
+
+    public void abrirJanelaCadastroPessoa() {
+        CadastroPessoa novo = new CadastroPessoa();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    public void abrirJanelaCadastroDivida() {
+        CadastroDivida novo = new CadastroDivida();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    public void abrirJanelaRenda() {
+        CadastroRenda novo = new CadastroRenda();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
+
+    public void abrirJanelaSobre() {
+        Sobre novo = new Sobre();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+    }
     
-    public void AdicionandoActionListerBotoes()
-    {
-        eventosBotao = new clBotoesTelaPrincipal(jMICadastroPessoa, jMICadastroRenda, jMICadastroDividas, jMISobre);
-        eventosBotao.setJAreaDeTrabalho(JAreaDeTrabalho);
-        jMICadastroPessoa.addActionListener(eventosBotao);
-        jMICadastroRenda.addActionListener(eventosBotao);
-        jMICadastroDividas.addActionListener(eventosBotao);
-        jMISobre.addActionListener(eventosBotao);
+    
+    
+    //Função que centraliza internaljframe
+    private void centralizaForm(JInternalFrame frame) {
+        Dimension desktopSize = JAreaDeTrabalho.getSize();
+        Dimension jInternalFrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+        (desktopSize.height - jInternalFrameSize.height) / 2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
