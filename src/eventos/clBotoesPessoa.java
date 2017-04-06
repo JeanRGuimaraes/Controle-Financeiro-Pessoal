@@ -1,38 +1,43 @@
 
 package eventos;
 
+import classes.clPessoa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import views.CadastroPessoa;
 
 
 public class clBotoesPessoa implements ActionListener{
 
-    private JButton salvar, apagar, cancelar;
+    private CadastroPessoa cadastroPessoa;
+    private clPessoa pessoa;
     
-    public clBotoesPessoa(JButton salvar, JButton apagar, JButton cancelar)
+    public clBotoesPessoa(CadastroPessoa cadastroPessoa)
     {
-        this.salvar = salvar;
-        this.cancelar = cancelar;
-        this.apagar = apagar;
+        this.cadastroPessoa=cadastroPessoa;
+        
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == salvar)
-        {
-            //action do botão salvar
-        }
-        
-        if(e.getSource() == apagar)
-        {
-            //action do botão apagar
-        }
-        
-        if(e.getSource() == cancelar)
-        {
-            //action do botão cancelar
-        }
+         if("cadastrar".equals(e.getActionCommand())){ 
+            this.pessoa = cadastroPessoa.getiCodPessoa();
+            this.pessoa.salvarPessoa();
+                  
+    }
+         if("excluir".equals(e.getActionCommand())){  
+            
+    }
+    if("cancelar".equals(e.getActionCommand())){  
+     this.cadastroPessoa.dispose();      
+          
+    }
+    if("limpar".equals(e.getActionCommand())){  
+       this.pessoa = this.cadastroPessoa.limparCampos();    
+          
     }
     
+    
+    } 
 }
