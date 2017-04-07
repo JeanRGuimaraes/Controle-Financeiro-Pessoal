@@ -41,8 +41,9 @@ public class TelaLogin extends javax.swing.JDialog {
     
     public void encerrarPrograma()
     {
+         this.parent.dispose();
         this.dispose();
-        this.parent.dispose();
+       
     }
 
     /**

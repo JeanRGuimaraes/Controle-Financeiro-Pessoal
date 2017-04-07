@@ -1,36 +1,46 @@
 
 package eventos;
 
+import classes.clRenda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import views.CadastroRenda;
 
 public class clBotoesRenda implements ActionListener{
 
-    private JButton salvar, apagar, cancelar;
+    private CadastroRenda cadastroRenda;
+    private clRenda renda;
     
-    public clBotoesRenda(JButton salvar, JButton apagar, JButton cancelar)
+    public clBotoesRenda(CadastroRenda cadastroRenda)
     {
-        this.salvar = salvar;
-        this.apagar = apagar;
-        this.cancelar = cancelar;
+        this.cadastroRenda = cadastroRenda;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == salvar)
+        
+        if("cadastrar".equals(e.getActionCommand())) 
         {
-            //action do botão salvar
+           this.renda = this.cadastroRenda.getRenda();
+           this.renda.salvarRenda();
         }
         
-        if(e.getSource() == apagar)
+        if("cancelar".equals(e.getActionCommand()))
         {
-            //action do botão apagar
+           this.cadastroRenda.dispose();
         }
         
-        if(e.getSource() == cancelar)
+        if("limpar".equals(e.getActionCommand()))
         {
-            //action do botão cancelar
+            renda = cadastroRenda.limparCampos();
+        }
+        
+        if("excluir".equals(e.getActionCommand()))
+        {
+            if(renda != null)
+            {
+                renda = cadastroRenda.apagarRenda(renda);
+            }
         }
     }
     

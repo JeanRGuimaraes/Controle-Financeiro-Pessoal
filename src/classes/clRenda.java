@@ -7,22 +7,27 @@ public class clRenda {
 
     private int iCodigoRenda = 0;
     private float fRenda = -1;
-    private String strNome = "", strPeriodo = "", strDescricao = "";
+    private String strNome = "", strPeriodoInicial = "", strPeriodoFinal = "", strDescricao = "";
 
     public void salvarRenda() {
+         if (verificarDados()) {
         System.out.println("Codigo: " + iCodigoRenda + 1);
         System.out.println("Renda: " + fRenda);
         System.out.println("Nome: " + strNome);
-        System.out.println("Periodo: " + strPeriodo);
-        System.out.println("Descrição: " + strDescricao);
+        System.out.println("Periodo Inicial: " + strPeriodoInicial);
+        System.out.println("Periodo Final: " + strPeriodoFinal);
+        System.out.println("Observação: " + strDescricao);
+          JOptionPane.showMessageDialog(null, "Renda Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+         }
 
     }
 
-    public void apagarDivida() {
+    public void apagarRenda() {
         iCodigoRenda = 0;
         fRenda = -1;
         strNome = "";
-        strPeriodo = "";
+        strPeriodoInicial = "";
+        strPeriodoFinal = "";
         strDescricao = "";
         JOptionPane.showMessageDialog(null, "Renda Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -38,16 +43,20 @@ public class clRenda {
             erro += "Campo de Nome";
         }
 
-        if (strPeriodo.equals("")) {
-            erro += "Campo de Periodo";
+        if (strPeriodoInicial.equals("")) {
+            erro += "Campo de Periodo Inicial";
+        }
+        
+        if (strPeriodoFinal.equals("")) {
+            erro += "Campo de Periodo Final";
         }
 
         if (strDescricao.equals("")) {
-            erro += "Campo de Descrição";
+            erro += "Campo de Observação";
         }
 
         if (erro.length() > 1) {
-            JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+           // JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -79,12 +88,20 @@ public class clRenda {
         this.strNome = strNome;
     }
 
-    public String getStrPeriodo() {
-        return strPeriodo;
+    public String getStrPeriodoInicial() {
+        return strPeriodoInicial;
     }
 
-    public void setStrPeriodo(String strPeriodo) {
-        this.strPeriodo = strPeriodo;
+    public void setStrPeriodoInicial(String strPeriodoInicial) {
+        this.strPeriodoInicial = strPeriodoInicial;
+    }
+
+    public String getStrPeriodoFinal() {
+        return strPeriodoFinal;
+    }
+
+    public void setStrPeriodoFinal(String strPeriodoFinal) {
+        this.strPeriodoFinal = strPeriodoFinal;
     }
 
     public String getStrDescricao() {
