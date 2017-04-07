@@ -122,9 +122,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             public void run() {
               //  new TelaPrincipal().setVisible(true);
                 TelaPrincipal tela = new TelaPrincipal();
-                tela.setVisible(true);
                 tela.abrirLogin();
-                
+                tela.setVisible(true);
             }
         });
     }
