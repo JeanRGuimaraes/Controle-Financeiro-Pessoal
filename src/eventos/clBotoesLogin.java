@@ -4,6 +4,7 @@ package eventos;
 import classes.clLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import views.TelaLogin;
 
 
@@ -27,6 +28,9 @@ public class clBotoesLogin implements ActionListener{
             if(login.verficarUsuario())
             {
                 telaLogin.dispose();
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Login Inválido");
             }
         }
         

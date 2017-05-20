@@ -28,11 +28,15 @@ public class clLogin {
     
     public boolean verficarUsuario()
     {
+        
         System.out.println("Usuario: " + strUsuario);
         System.out.println("Senha: " + strSenha);
         
-        return true;
-        
+        if(strUsuario.equals("admin") && strSenha.equals("123"))
+        {
+            return true;
+        }
+        return false;
         /*
         quando existir uma validação retorna false mas antes deve retornar uma mensagem que não foi possivel fazer login
          JOptionPane.showMessageDialog(null, "Usuario ou Senha incorretos", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);

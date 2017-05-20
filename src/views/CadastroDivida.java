@@ -5,6 +5,8 @@
  */
 package views;
 import classes.clDivida;
+import classes.clExceptions;
+import classes.clLog;
 import eventos.clBotoesDivida;
 import javax.swing.JOptionPane;
 
@@ -19,14 +21,23 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     public clDivida getDivida(){
         //alimentar o objeto com informacoes do textField
         clDivida divida = new clDivida();
-        if(verificaDados())
-        {
+        String numero = txtValor.getText().replace(",", ".");
+        try{
+        verificaDados();
+        
             divida.setiCod_divida(Integer.parseInt(txtCodigo.getText()));
             divida.setStrDescricao(txtDescricao.getText());
-            divida.setfValor(Float.parseFloat(txtValor.getText()));
+            divida.setfValor(Float.parseFloat(numero));
             divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
             divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
             divida.setStrStatus(txtStatus.getText());
+        
+        }catch(clExceptions mensagem)
+        {
+            mensagem.getMessage();
+            String erro = mensagem.toString();
+            JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+            return new clDivida();
         }
         return divida;
     }
@@ -227,39 +238,44 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     private boolean verificaDados() {
-        String erro = "";
-        
-        if (!txtCodigo.getText().matches("^[0-9]*$") || txtValor.getText().isEmpty()) {
-            erro += "\n- Campo de Codigo";
-        }
-        
-        if (!txtValor.getText().replace(".", "").matches("^[0-9]*$") || txtValor.getText().isEmpty()) {
-            erro += "\n- Campo de Valor";
-        }
+     private void verificaDados() throws clExceptions {
+       
+         
+         
+         try
+         {
+             Integer.parseInt(txtCodigo.getText());
+         }catch(NumberFormatException ex)
+         {
+             throw new clExceptions("Por favor, preencha o campo de Código");
+         }
+         
+         try
+         {
+             
+             String numero = txtValor.getText().replace(",", ".");
+             Float.parseFloat(numero);
+         }catch(NumberFormatException ex)
+         {
+             throw new clExceptions("Por favor, preencha o campo de valor obrigatório");
+         }
 
         if (txtDescricao.getText().equals("")) {
-            erro += "\n- Campo de Descrição";
+            throw new clExceptions("Campo de Descrição Inválido");
         }
 
         if (txtmPeriodoInicial.getText().equals("  /  /    ")) {
-            erro += "\n- Campo do Periodo Inicial";
+            throw new clExceptions("Campo do Periodo Inicial Inválido");
         }
         
         if (txtmPeriodoFinal.getText().equals("  /  /    ")) {
-            erro += "\n- Campo do Periodo Final";
+            throw new clExceptions("Campo do Periodo Final Inválido");
         }
 
         if (txtStatus.getText().equals("")) {
-            erro += "\n- Campo de Status";
+            throw new clExceptions("Campo de Status Inválido");
         }
 
-        if (erro.length() > 1) {
-            JOptionPane.showMessageDialog(null, "Os seguintes Campos estão invalidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-
-        return true;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -18,6 +18,8 @@ public class clDivida {
             System.out.println("Status: " + strStatus);
             
             JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+            new clLog("Dívida Cadastrada");
+            
         }
     }
 
@@ -29,6 +31,7 @@ public class clDivida {
         strPeriodoFinal = "";
         strStatus = "";
         JOptionPane.showMessageDialog(null, "Divida Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+        new clLog("Dívida Apagada");
     }
 
     public boolean verificaDados() {
