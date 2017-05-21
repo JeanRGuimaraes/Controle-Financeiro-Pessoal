@@ -6,7 +6,6 @@
 package views;
 import classes.clDivida;
 import classes.clExceptions;
-import classes.clLog;
 import eventos.clBotoesDivida;
 import javax.swing.JOptionPane;
 
@@ -59,9 +58,9 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     public clDivida apagarDivida(clDivida divida)
     {
         divida.apagarDivida();
-        divida = limparCampos();
+        limparCampos();
 
-        return divida;
+        return null;
     }
     
     
@@ -239,9 +238,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
      private void verificaDados() throws clExceptions {
-       
-         
-         
+
          try
          {
              Integer.parseInt(txtCodigo.getText());
@@ -251,8 +248,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
          }
          
          try
-         {
-             
+         { 
              String numero = txtValor.getText().replace(",", ".");
              Float.parseFloat(numero);
          }catch(NumberFormatException ex)

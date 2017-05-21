@@ -17,6 +17,9 @@ public class clPessoa {
             System.out.println("Telefone: " + iTelefone);
             System.out.println("CPF: " + iCpf);
             System.out.println("RG: " + iRg);
+            
+            JOptionPane.showMessageDialog(null, "Pessoa Cadastrada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+            new clLog("Pessoa Cadastrada");
         }
     }
 
@@ -30,7 +33,7 @@ public class clPessoa {
         this.strEmail = "";
         this.strProfissao = "";
         JOptionPane.showMessageDialog(null, "Pessoa Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-
+        new clLog("Pessoa Apagada");
     }
 
     public boolean verificaDados() {
