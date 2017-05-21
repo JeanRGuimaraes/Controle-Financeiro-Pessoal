@@ -4,7 +4,8 @@ import javax.swing.JOptionPane;
 
 public class clPessoa {
 
-    private int iCodPessoa = 0, iCpf = -1, iRg = -1, iTelefone = -1;
+    private int iCodPessoa = 0, iRg = -1, iTelefone = -1;
+    private double iCpf = -1;
     private String strNome = "", strGenero = "", strEmail = "", strProfissao = "";
 
     public void salvarPessoa() {
@@ -68,7 +69,7 @@ public class clPessoa {
         }
 
         if (erro.length() > 1) {
-            JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+           // JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -85,11 +86,11 @@ public class clPessoa {
         this.iCodPessoa = iCodPessoa;
     }
 
-    public int getiCpf() {
+    public double getiCpf() {
         return iCpf;
     }
 
-    public void setiCpf(int iCpf) {
+    public void setiCpf(double iCpf) {
         this.iCpf = iCpf;
     }
 
