@@ -22,6 +22,9 @@ build/classes/classes/clPessoa.class
 build/classes/eventos/clBotoesPessoa.class
 build/classes/views/CadastroDivida.class
 build/classes/views/CadastroPessoa.class
+build/classes/eventos/clBotoesLogin.class
+build/classes/views/CadastroPessoa.class
+build/classes/views/TelaPrincipal.class
 
 
 /dist/

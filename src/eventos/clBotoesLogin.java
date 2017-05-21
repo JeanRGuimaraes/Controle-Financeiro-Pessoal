@@ -27,9 +27,11 @@ public class clBotoesLogin implements ActionListener{
             
             if(login.verficarUsuario())
             {
+                telaLogin.setValido(true);
                 telaLogin.dispose();
             }else
             {
+                telaLogin.setValido(false);
                 JOptionPane.showMessageDialog(null, "Login Inválido");
             }
         }

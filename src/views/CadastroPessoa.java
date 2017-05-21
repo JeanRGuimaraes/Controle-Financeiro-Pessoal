@@ -287,6 +287,11 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         if (txtProfisao.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de Profissão corretamente");
         }
+        
+        if(cbxGenero.getSelectedItem().toString().equals("selecionar"))
+        {
+             throw new clExceptions("Por favor, escolha um sexo");
+        }
 
        /* if (txtEmail.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de Email corretamente");

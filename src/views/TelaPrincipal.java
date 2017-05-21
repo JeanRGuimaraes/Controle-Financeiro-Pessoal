@@ -133,6 +133,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     {
           TelaLogin login = new TelaLogin(this, true);
           login.setVisible(true);
+          
+          if(!login.getValido())
+          {
+              this.dispose();
+          }
     }
 
     public void abrirJanelaCadastroPessoa() {

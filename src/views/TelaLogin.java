@@ -17,6 +17,7 @@ public class TelaLogin extends javax.swing.JDialog {
 
     private java.awt.Frame parent;
     private clBotoesLogin botoes = new clBotoesLogin(this);
+    private boolean valido = false;
     /**
      * Creates new form TelaLogin
      */
@@ -44,6 +45,16 @@ public class TelaLogin extends javax.swing.JDialog {
          this.parent.dispose();
         this.dispose();
        
+    }
+    
+    public void setValido(boolean valido)
+    {
+        this.valido = valido;
+    }
+    
+    public boolean getValido()
+    {
+        return valido;
     }
 
     /**
