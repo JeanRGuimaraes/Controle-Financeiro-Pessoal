@@ -138,6 +138,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
           
           if(!login.getValido())
           {
+              new clLog("Janela de Login encerrada sem validação, encerrando sistema");
               this.dispose();
           }
     }

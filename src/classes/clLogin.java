@@ -34,8 +34,10 @@ public class clLogin {
         
         if(strUsuario.equals("admin") && strSenha.equals("123"))
         {
+            new clLog("Login Valido, Usuario: " + strUsuario + " Encerrando tela de login");
             return true;
         }
+        new clLog("Login Inválido");
         return false;
         /*
         quando existir uma validação retorna false mas antes deve retornar uma mensagem que não foi possivel fazer login

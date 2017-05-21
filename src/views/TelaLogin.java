@@ -5,6 +5,7 @@
  */
 package views;
 
+import classes.clLog;
 import classes.clLogin;
 import eventos.clBotoesLogin;
 import java.util.Arrays;
@@ -42,7 +43,8 @@ public class TelaLogin extends javax.swing.JDialog {
     
     public void encerrarPrograma()
     {
-         this.parent.dispose();
+        new clLog("Encerrando tela de Login");
+        this.parent.dispose();
         this.dispose();
        
     }
