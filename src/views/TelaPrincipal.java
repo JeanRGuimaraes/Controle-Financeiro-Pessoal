@@ -5,6 +5,7 @@
  */
 package views;
 
+import classes.clLog;
 import eventos.clBotoesTelaPrincipal;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
@@ -131,6 +132,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     public void abrirLogin()
     {
+          new clLog("Abrindo tela de login");
           TelaLogin login = new TelaLogin(this, true);
           login.setVisible(true);
           
@@ -141,6 +143,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void abrirJanelaCadastroPessoa() {
+        new clLog("Abrindo tela de Cadastro de Pessoa");
         CadastroPessoa novo = new CadastroPessoa();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
@@ -148,6 +151,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void abrirJanelaCadastroDivida() {
+        new clLog("Abrindo tela de Cadastro de Divida");
         CadastroDivida novo = new CadastroDivida();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
@@ -155,6 +159,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void abrirJanelaRenda() {
+        new clLog("Abrindo tela de Cadastro de Renda");
         CadastroRenda novo = new CadastroRenda();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
@@ -162,6 +167,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void abrirJanelaSobre() {
+        new clLog("Abrindo tela Sobre");
         Sobre novo = new Sobre();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
