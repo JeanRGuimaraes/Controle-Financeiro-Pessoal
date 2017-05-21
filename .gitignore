@@ -18,7 +18,10 @@ nbproject/private/*
 *.log
 Log.txt
 *private.xml
-
+build/classes/classes/clPessoa.class
+build/classes/eventos/clBotoesPessoa.class
+build/classes/views/CadastroDivida.class
+build/classes/views/CadastroPessoa.class
 
 
 /dist/
