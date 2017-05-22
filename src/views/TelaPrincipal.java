@@ -157,6 +157,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
+         
     }
 
     public void abrirJanelaRenda() {

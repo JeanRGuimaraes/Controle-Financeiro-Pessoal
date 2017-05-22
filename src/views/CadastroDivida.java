@@ -6,6 +6,7 @@
 package views;
 import classes.clDivida;
 import classes.clExceptions;
+import classes.clLog;
 import eventos.clBotoesDivida;
 import javax.swing.JOptionPane;
 
@@ -51,7 +52,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             txtmPeriodoInicial.setText("");
             txtmPeriodoFinal.setText("");
             txtStatus.setText("");
-            
+        new clLog("Dívida foi limpa");
         return divida;
     }
     
@@ -63,6 +64,12 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         return null;
     }
     
+
+    public void fecharJanela()
+    {   
+        new clLog("Saindo da tela de Dívida");
+        this.dispose();   
+    }
     
     /**
      * Creates new form CadastroDivida
@@ -74,6 +81,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(botoes);
         btnExcluir.addActionListener(botoes);
         btnLimpar.addActionListener(botoes);
+        
     }
 
     /**
