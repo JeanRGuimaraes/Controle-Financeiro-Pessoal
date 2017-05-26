@@ -8,6 +8,7 @@ package cfp.views;
 import cfp.classes.clLog;
 import cfp.eventos.clBotoesTelaPrincipal;
 import java.awt.Dimension;
+import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 
 
@@ -142,38 +143,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
               this.dispose();
           }
     }
+    
 
-    public void abrirJanelaCadastroPessoa() {
+    public CadastroPessoa abrirJanelaCadastroPessoa() {
         new clLog("Abrindo tela de Cadastro de Pessoa");
         CadastroPessoa novo = new CadastroPessoa();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
+        return novo;
+        
     }
 
-    public void abrirJanelaCadastroDivida() {
+    public CadastroDivida abrirJanelaCadastroDivida() {
         new clLog("Abrindo tela de Cadastro de Divida");
         CadastroDivida novo = new CadastroDivida();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
+        
+        return novo;
          
     }
 
-    public void abrirJanelaRenda() {
+    public CadastroRenda abrirJanelaRenda() {
         new clLog("Abrindo tela de Cadastro de Renda");
         CadastroRenda novo = new CadastroRenda();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
+        return novo;
     }
 
-    public void abrirJanelaSobre() {
+    public Sobre abrirJanelaSobre() {
         new clLog("Abrindo tela Sobre");
         Sobre novo = new Sobre();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
+        
+        return novo;
     }
     
     
