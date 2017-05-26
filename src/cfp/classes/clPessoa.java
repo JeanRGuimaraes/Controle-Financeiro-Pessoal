@@ -1,4 +1,4 @@
-package classes;
+package cfp.classes;
 
 import javax.swing.JOptionPane;
 

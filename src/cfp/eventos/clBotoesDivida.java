@@ -1,9 +1,9 @@
-package eventos;
+package cfp.eventos;
 
-import classes.clDivida;
+import cfp.classes.clDivida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import views.CadastroDivida;
+import cfp.views.CadastroDivida;
 
 public class clBotoesDivida implements ActionListener {
 

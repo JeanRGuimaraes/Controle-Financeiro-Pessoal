@@ -1,4 +1,4 @@
-package classes;
+package cfp.classes;
 
 
 public class clExceptions extends Exception{

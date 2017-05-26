@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views;
+package cfp.views;
 
-import classes.clExceptions;
-import classes.clPessoa;
-import eventos.clBotoesPessoa;
+import cfp.classes.clExceptions;
+import cfp.classes.clPessoa;
+import cfp.eventos.clBotoesPessoa;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 

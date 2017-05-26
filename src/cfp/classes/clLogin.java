@@ -1,5 +1,5 @@
 
-package classes;
+package cfp.classes;
 
 
 public class clLogin {

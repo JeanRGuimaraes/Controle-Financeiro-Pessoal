@@ -1,8 +1,8 @@
-package eventos;
+package cfp.eventos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import views.TelaPrincipal;
+import cfp.views.TelaPrincipal;
 
 public class clBotoesTelaPrincipal implements ActionListener {
 

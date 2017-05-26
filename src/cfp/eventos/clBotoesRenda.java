@@ -1,10 +1,10 @@
 
-package eventos;
+package cfp.eventos;
 
-import classes.clRenda;
+import cfp.classes.clRenda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import views.CadastroRenda;
+import cfp.views.CadastroRenda;
 
 public class clBotoesRenda implements ActionListener{
 
