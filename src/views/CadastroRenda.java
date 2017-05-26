@@ -5,6 +5,8 @@
  */
 package views;
 
+import classes.clExceptions;
+import classes.clLog;
 import classes.clRenda;
 import eventos.clBotoesRenda;
 import javax.swing.JOptionPane;
@@ -19,16 +21,22 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
 
     public clRenda getRenda() {
         clRenda renda = new clRenda();
-        if (verificaDados()) {
+          try{
+        verificaDados();
 
             renda.setStrNome(txtNome.getText());
             renda.setStrPeriodoInicial(txtPeriodoInicial.getText());
             renda.setStrPeriodoFinal(txtPeriodoFinal.getText());
-            renda.setStrDescricao(txtObs.getText());
+            renda.setStrDescricao(jTextArea1Observacao.getText());
             renda.setiCodigoRenda(Integer.parseInt(txtCodigo.getText()));
             renda.setfRenda(Float.parseFloat(txtRenda.getText()));
+        } catch(clExceptions mensagem)
+             {
+            mensagem.getMessage();
+            String erro = mensagem.toString();
+            JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+            return new clRenda();
         }
-
         return renda;
     }
 
@@ -38,9 +46,10 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         txtNome.setText("");
         txtPeriodoInicial.setText("");
         txtPeriodoFinal.setText("");
-        txtObs.setText("");
+        jTextArea1Observacao.setText("");
         txtCodigo.setText("");
         txtRenda.setText("");
+         new clLog("A renda foi limpa");
 
         return renda;
     }
@@ -51,6 +60,14 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
 
         return renda;
     }
+    
+     public void fecharJanela()
+    {   
+        new clLog("Saiu da tela de Renda");
+        this.dispose();   
+    }
+    
+    
 
     /**
      * Creates new form CadastroRenda
@@ -64,38 +81,41 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
 
     }
 
-    private boolean verificaDados() {
-        String erro = "";
-
+    private boolean verificaDados() throws clExceptions {
+         
         if (!txtCodigo.getText().matches("^[0-9]*$") || txtCodigo.getText().isEmpty()) {
-            erro += "\n- Campo de Codigo";
-        }
+           throw new clExceptions("Por favavor preencha o campo do Codigo");
+         }
 
+         if (txtNome.getText().equals("")) {
+             throw new clExceptions("Por favor digita o nome");
+        }
+        
         if (!txtRenda.getText().replace(".", "").replace(",", "").matches("^[0-9]*$") || txtRenda.getText().isEmpty()) {
-            erro += "\n- Campo de Renda";
+             throw new clExceptions("Campo da renda é obrigatório");
         }
-
-        if (txtObs.getText().equals("")) {
-            erro += "\n- Campo de Observação";
-        }
-
         if (txtPeriodoInicial.getText().equals("  /  /    ")) {
-            erro += "\n- Campo do Periodo Inicial";
+             throw new clExceptions("Preencha o campo do Periodo Inicial");
         }
 
         if (txtPeriodoFinal.getText().equals("  /  /    ")) {
-            erro += "\n- Campo do Periodo Final";
+             throw new clExceptions("Preencha Campo de periodo Final");
         }
 
         if (txtStatus.getText().equals("")) {
-            erro += "\n- Campo de Status";
+             throw new clExceptions("Por favor o campo de Status");
         }
-
+         if (jTextArea1Observacao.getText().equals("")) {
+             throw new clExceptions("Campo de observações vazia");
+        }
+         /*
         if (erro.length() > 1) {
             JOptionPane.showMessageDialog(null, "Os seguintes Campos estão invalidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
+        return true;
+         */
         return true;
     }
 
@@ -126,7 +146,8 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPeriodoFinal = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
-        txtObs = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1Observacao = new javax.swing.JTextArea();
 
         setClosable(true);
         setTitle("Cadastro de Renda");
@@ -174,15 +195,19 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Obeservação"));
         jPanel1.setName(""); // NOI18N
 
+        jTextArea1Observacao.setColumns(20);
+        jTextArea1Observacao.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1Observacao);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtObs)
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtObs, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -302,9 +327,10 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1Observacao;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtObs;
     private javax.swing.JFormattedTextField txtPeriodoFinal;
     private javax.swing.JFormattedTextField txtPeriodoInicial;
     private javax.swing.JTextField txtRenda;

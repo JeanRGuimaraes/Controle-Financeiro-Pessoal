@@ -27,7 +27,7 @@ public class clBotoesRenda implements ActionListener{
         
         if("cancelar".equals(e.getActionCommand()))
         {
-           this.cadastroRenda.dispose();
+           this.cadastroRenda.fecharJanela();
         }
         
         if("limpar".equals(e.getActionCommand()))

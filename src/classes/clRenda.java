@@ -18,6 +18,7 @@ public class clRenda {
         System.out.println("Periodo Final: " + strPeriodoFinal);
         System.out.println("Observação: " + strDescricao);
           JOptionPane.showMessageDialog(null, "Renda Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+          new clLog("Renda Cadastrada");
          }
 
     }
@@ -30,6 +31,7 @@ public class clRenda {
         strPeriodoFinal = "";
         strDescricao = "";
         JOptionPane.showMessageDialog(null, "Renda Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+        new clLog("Renda Apagada");
     }
 
     public boolean verificarDados() {
