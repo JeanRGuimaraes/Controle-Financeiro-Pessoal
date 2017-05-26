@@ -18,27 +18,21 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
 
     private clBotoesDivida botoes = new clBotoesDivida(this);
     
-    public clDivida getDivida(){
+    public clDivida getDivida() throws clExceptions{
         //alimentar o objeto com informacoes do textField
         clDivida divida = new clDivida();
         String numero = txtValor.getText().replace(",", ".");
-        try{
+        
         verificaDados();
         
-            divida.setiCod_divida(Integer.parseInt(txtCodigo.getText()));
-            divida.setStrDescricao(txtDescricao.getText());
-            divida.setfValor(Float.parseFloat(numero));
-            divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
-            divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
-            divida.setStrStatus(txtStatus.getText());
+         divida.setiCod_divida(Integer.parseInt(txtCodigo.getText()));
+         divida.setStrDescricao(txtDescricao.getText());
+         divida.setfValor(Float.parseFloat(numero));
+         divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
+         divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
+         divida.setStrStatus(txtStatus.getText());
         
-        }catch(clExceptions mensagem)
-        {
-            mensagem.getMessage();
-            String erro = mensagem.toString();
-            JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            return new clDivida();
-        }
+        
         return divida;
     }
     
@@ -52,13 +46,12 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             txtmPeriodoInicial.setText("");
             txtmPeriodoFinal.setText("");
             txtStatus.setText("");
-        new clLog("Dívida foi limpa");
+       
         return divida;
     }
     
     public clDivida apagarDivida(clDivida divida)
     {
-        divida.apagarDivida();
         limparCampos();
 
         return null;
