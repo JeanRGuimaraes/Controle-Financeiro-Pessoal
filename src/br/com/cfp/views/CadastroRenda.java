@@ -6,10 +6,8 @@
 package br.com.cfp.views;
 
 import br.com.cfp.classes.clExceptions;
-import br.com.cfp.classes.clLog;
 import br.com.cfp.classes.clRenda;
 import br.com.cfp.eventos.clBotoesRenda;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,11 +15,11 @@ import javax.swing.JOptionPane;
  */
 public class CadastroRenda extends javax.swing.JInternalFrame {
 
-    clBotoesRenda eventos = new clBotoesRenda(this);
+    private clBotoesRenda eventos = new clBotoesRenda(this);
 
-    public clRenda getRenda() {
+    public clRenda getRenda() throws clExceptions{
         clRenda renda = new clRenda();
-          try{
+          
         verificaDados();
 
             renda.setStrNome(txtNome.getText());
@@ -30,13 +28,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
             renda.setStrDescricao(jTextArea1Observacao.getText());
             renda.setiCodigoRenda(Integer.parseInt(txtCodigo.getText()));
             renda.setfRenda(Float.parseFloat(txtRenda.getText()));
-        } catch(clExceptions mensagem)
-             {
-            mensagem.getMessage();
-            String erro = mensagem.toString();
-            JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            return new clRenda();
-        }
+   
         return renda;
     }
 
@@ -49,21 +41,18 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jTextArea1Observacao.setText("");
         txtCodigo.setText("");
         txtRenda.setText("");
-         new clLog("A renda foi limpa");
 
         return renda;
     }
 
-    public clRenda apagarRenda(clRenda renda) {
-        renda.apagarRenda();
-        renda = limparCampos();
+    public clRenda apagarRenda() {
+        limparCampos();
 
-        return renda;
+        return null;
     }
     
      public void fecharJanela()
     {   
-        new clLog("Saiu da tela de Renda");
         this.dispose();   
     }
     

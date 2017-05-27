@@ -54,6 +54,7 @@ public class clBotoesDivida implements ActionListener {
 
         if ("cancelar".equals(e.getActionCommand())) {
             
+            new clLog("Saindo da tela de Dívida");
             this.cadastroDivida.fecharJanela();
         }
 

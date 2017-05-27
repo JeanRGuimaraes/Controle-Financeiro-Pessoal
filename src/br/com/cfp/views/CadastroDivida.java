@@ -6,9 +6,7 @@
 package br.com.cfp.views;
 import br.com.cfp.classes.clDivida;
 import br.com.cfp.classes.clExceptions;
-import br.com.cfp.classes.clLog;
 import br.com.cfp.eventos.clBotoesDivida;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,7 +58,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
 
     public void fecharJanela()
     {   
-        new clLog("Saindo da tela de Dívida");
+        
         this.dispose();   
     }
     

@@ -9,62 +9,6 @@ public class clRenda {
     private float fRenda = -1;
     private String strNome = "", strPeriodoInicial = "", strPeriodoFinal = "", strDescricao = "";
 
-    public void salvarRenda() {
-         if (verificarDados()) {
-        System.out.println("Codigo: " + iCodigoRenda + 1);
-        System.out.println("Renda: " + fRenda);
-        System.out.println("Nome: " + strNome);
-        System.out.println("Periodo Inicial: " + strPeriodoInicial);
-        System.out.println("Periodo Final: " + strPeriodoFinal);
-        System.out.println("Observação: " + strDescricao);
-          JOptionPane.showMessageDialog(null, "Renda Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-          new clLog("Renda Cadastrada");
-         }
-
-    }
-
-    public void apagarRenda() {
-        iCodigoRenda = 0;
-        fRenda = -1;
-        strNome = "";
-        strPeriodoInicial = "";
-        strPeriodoFinal = "";
-        strDescricao = "";
-        JOptionPane.showMessageDialog(null, "Renda Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-        new clLog("Renda Apagada");
-    }
-
-    public boolean verificarDados() {
-        String erro = "";
-
-        if (fRenda == -1) {
-            erro += "Campo de Renda";
-        }
-
-        if (strNome.equals("")) {
-            erro += "Campo de Nome";
-        }
-
-        if (strPeriodoInicial.equals("")) {
-            erro += "Campo de Periodo Inicial";
-        }
-        
-        if (strPeriodoFinal.equals("")) {
-            erro += "Campo de Periodo Final";
-        }
-
-        if (strDescricao.equals("")) {
-            erro += "Campo de Observação";
-        }
-
-        if (erro.length() > 1) {
-           // JOptionPane.showMessageDialog(null, "Os seguintes Campos precisam ser preenchidos" + erro, "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-
-        return true;
-    }
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ GET'S E SET'S ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
     public int getiCodigoRenda() {
         return iCodigoRenda;
