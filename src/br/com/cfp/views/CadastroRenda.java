@@ -41,6 +41,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jTextArea1Observacao.setText("");
         txtCodigo.setText("");
         txtRenda.setText("");
+        txtStatus.setText("");
 
         return renda;
     }
