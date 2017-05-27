@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cfp.views;
+package br.com.cfp.views;
 
-import cfp.classes.clLog;
-import cfp.eventos.clBotoesTelaPrincipal;
+import br.com.cfp.classes.clLog;
+import br.com.cfp.eventos.clBotoesTelaPrincipal;
 import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;

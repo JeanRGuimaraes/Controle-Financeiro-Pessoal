@@ -1,10 +1,10 @@
-package cfp.eventos;
+package br.com.cfp.eventos;
 
-import cfp.classes.clLog;
-import cfp.classes.clPessoa;
+import br.com.cfp.classes.clLog;
+import br.com.cfp.classes.clPessoa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import cfp.views.CadastroPessoa;
+import br.com.cfp.views.CadastroPessoa;
 
 public class clBotoesPessoa implements ActionListener {
 

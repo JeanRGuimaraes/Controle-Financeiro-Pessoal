@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cfp.views;
+package br.com.cfp.views;
 
-import cfp.classes.clLog;
-import cfp.classes.clLogin;
-import cfp.eventos.clBotoesLogin;
+import br.com.cfp.classes.clLog;
+import br.com.cfp.classes.clLogin;
+import br.com.cfp.eventos.clBotoesLogin;
 import java.util.Arrays;
 
 /**

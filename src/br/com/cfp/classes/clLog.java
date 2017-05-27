@@ -1,4 +1,4 @@
-package cfp.classes;
+package br.com.cfp.classes;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

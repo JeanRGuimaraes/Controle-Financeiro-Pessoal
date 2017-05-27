@@ -1,11 +1,11 @@
-package cfp.eventos;
+package br.com.cfp.eventos;
 
-import cfp.classes.clDivida;
-import cfp.classes.clExceptions;
-import cfp.classes.clLog;
+import br.com.cfp.classes.clDivida;
+import br.com.cfp.classes.clExceptions;
+import br.com.cfp.classes.clLog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import cfp.views.CadastroDivida;
+import br.com.cfp.views.CadastroDivida;
 import javax.swing.JOptionPane;
 
 public class clBotoesDivida implements ActionListener {

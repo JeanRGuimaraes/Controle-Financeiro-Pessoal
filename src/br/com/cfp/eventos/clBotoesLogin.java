@@ -1,11 +1,11 @@
 
-package cfp.eventos;
+package br.com.cfp.eventos;
 
-import cfp.classes.clLogin;
+import br.com.cfp.classes.clLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import cfp.views.TelaLogin;
+import br.com.cfp.views.TelaLogin;
 
 
 public class clBotoesLogin implements ActionListener{

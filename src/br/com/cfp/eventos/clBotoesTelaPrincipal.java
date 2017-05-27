@@ -1,12 +1,12 @@
-package cfp.eventos;
+package br.com.cfp.eventos;
 
-import cfp.views.CadastroDivida;
-import cfp.views.CadastroPessoa;
-import cfp.views.CadastroRenda;
-import cfp.views.Sobre;
+import br.com.cfp.views.CadastroDivida;
+import br.com.cfp.views.CadastroPessoa;
+import br.com.cfp.views.CadastroRenda;
+import br.com.cfp.views.Sobre;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import cfp.views.TelaPrincipal;
+import br.com.cfp.views.TelaPrincipal;
 
 public class clBotoesTelaPrincipal implements ActionListener {
 
