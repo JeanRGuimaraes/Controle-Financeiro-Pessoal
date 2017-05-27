@@ -1,6 +1,7 @@
 
 package br.com.cfp.eventos;
 
+import br.com.cfp.classes.clLog;
 import br.com.cfp.classes.clLogin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,21 +24,23 @@ public class clBotoesLogin implements ActionListener{
         
         if("ok".equals(e.getActionCommand()))
         {
-            login = telaLogin.verificarUsuario();
+            login = telaLogin.setaUsuario();
             
-            if(login.verficarUsuario())
+            
+            if(telaLogin.verificaUsuario(login))
             {
-                telaLogin.setValido(true);
+                new clLog("Login Valido, Usuario: " + login.getStrUsuario() + " Liberando Acesso ao sistema.");
                 telaLogin.dispose();
             }else
             {
-                telaLogin.setValido(false);
+                new clLog("Login Inválido");
                 JOptionPane.showMessageDialog(null, "Login Inválido");
             }
         }
         
         if("cancelar".equals(e.getActionCommand()))
         {
+            new clLog("Encerrando Programa");
             telaLogin.encerrarPrograma();
         }
     }

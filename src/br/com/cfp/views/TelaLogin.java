@@ -5,10 +5,9 @@
  */
 package br.com.cfp.views;
 
-import br.com.cfp.classes.clLog;
+
 import br.com.cfp.classes.clLogin;
 import br.com.cfp.eventos.clBotoesLogin;
-import java.util.Arrays;
 
 /**
  *
@@ -31,7 +30,7 @@ public class TelaLogin extends javax.swing.JDialog {
         btnCancelar.addActionListener(botoes);
     }
     
-    public clLogin verificarUsuario()
+    public clLogin setaUsuario()
     {
         clLogin login = new clLogin();
         
@@ -41,17 +40,28 @@ public class TelaLogin extends javax.swing.JDialog {
         return login;
     }
     
-    public void encerrarPrograma()
+    public boolean verificaUsuario(clLogin login)
     {
-        new clLog("Encerrando tela de Login");
-        this.parent.dispose();
-        this.dispose();
-       
+         System.out.println("Usuario: " + login.getStrUsuario());
+        System.out.println("Senha: " + login.getStrSenha());
+        
+        if(login.getStrUsuario().equals("admin") && login.getStrSenha().equals("123"))
+        {
+            this.valido = true;
+            return true;
+        }else
+        {
+            this.valido = false;
+             return false;
+        }
     }
     
-    public void setValido(boolean valido)
+    public void encerrarPrograma()
     {
-        this.valido = valido;
+        
+        //this.parent.dispose();
+        this.dispose();
+       
     }
     
     public boolean getValido()
