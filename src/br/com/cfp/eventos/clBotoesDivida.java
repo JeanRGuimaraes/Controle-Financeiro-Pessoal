@@ -42,7 +42,7 @@ public class clBotoesDivida implements ActionListener {
             {
                    mensagem.getMessage();
                    String erro = mensagem.toString();
-                   JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+                   JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             }
 
 
