@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import br.com.cfp.views.TelaLogin;
+import br.com.cfp.classes.clArquivo;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class clBotoesLogin implements ActionListener{
@@ -14,6 +18,8 @@ public class clBotoesLogin implements ActionListener{
      private TelaLogin telaLogin;
      private clLogin login;
      
+     
+
 	
 	public clBotoesLogin(TelaLogin telaLogin){
             this.telaLogin = telaLogin;
@@ -24,12 +30,17 @@ public class clBotoesLogin implements ActionListener{
         
         if("ok".equals(e.getActionCommand()))
         {
+ 
             login = telaLogin.setaUsuario();
-            
-            
             if(telaLogin.verificaUsuario(login))
             {
-                new clLog("Login Valido, Usuario: " + login.getStrUsuario() + " Liberando Acesso ao sistema.");
+                new clLog("Login Valido, Usuario: " + login.getStrUsuario() + ", Liberando Acesso ao sistema.");
+                try {
+                    telaLogin.salvaUsuarioArquivo();
+                } catch (IOException ex) {
+                    Logger.getLogger(clBotoesLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    new clLog("Erro na hora de ler o arquivo " + login.getStrUsuario());
+                }
                 telaLogin.dispose();
             }else
             {
@@ -44,5 +55,6 @@ public class clBotoesLogin implements ActionListener{
             telaLogin.encerrarPrograma();
         }
     }
-    
+ 
+   
 }

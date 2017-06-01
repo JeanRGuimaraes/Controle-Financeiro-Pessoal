@@ -23,12 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="394" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="438" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane1" alignment="0" pref="327" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" alignment="0" pref="349" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -47,7 +47,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Controle-Financeiro-Pessoal&#xa;&#xa;Um sistema de controle financeiro pessoal com seu foco principal &#xa;em assuntos pessoais do cliente possuindo ferramentas simples de &#xa;gerenciamento de dividas, renda individual ou familiar de cada cliente.&#xa;&#xa;&#xa;&#xa;&#xa;Desenvolvedores:&#xa;Alberto&#xa;Emerson Leonardo Zock Alves&#xa;Jo&#xe3;o Filipe Rodovanski Alves&#xa;&#xa;&#xa;&#xa;&#xa;Criado em 24/04/2017"/>
+            <Property name="text" type="java.lang.String" value="Controle-Financeiro-Pessoal&#xa;&#xa;Um sistema de controle financeiro pessoal com seu foco principal &#xa;em assuntos pessoais do cliente possuindo ferramentas simples de &#xa;gerenciamento de dividas, renda individual ou familiar de cada cliente.&#xa;&#xa;&#xa;&#xa;&#xa;Desenvolvedores:&#xa;Alberto Tuti Soki&#xa;Emerson Leonardo Zock Alves&#xa;Jo&#xe3;o Filipe Rodovanski Alves&#xa;&#xa;&#xa;&#xa;&#xa;Criado em 24/04/2017"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>

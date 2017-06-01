@@ -5,9 +5,10 @@
  */
 package br.com.cfp.views;
 
-
+import br.com.cfp.classes.clArquivo;
 import br.com.cfp.classes.clLogin;
 import br.com.cfp.eventos.clBotoesLogin;
+import java.io.IOException;
 
 /**
  *
@@ -28,7 +29,21 @@ public class TelaLogin extends javax.swing.JDialog {
         
         btnOk.addActionListener(botoes);
         btnCancelar.addActionListener(botoes);
+        getUsuarioArquivo();
     }
+       public void salvaUsuarioArquivo() throws IOException {
+
+        new clArquivo(txtUsuario.getText());
+
+    }
+
+    private void getUsuarioArquivo() {
+
+        clArquivo usuario= new clArquivo();
+        txtUsuario.setText(usuario.getlogin());
+        
+    }
+    
     
     public clLogin setaUsuario()
     {

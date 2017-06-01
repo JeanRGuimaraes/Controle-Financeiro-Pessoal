@@ -35,7 +35,7 @@ public class Sobre extends javax.swing.JInternalFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextArea1.setText("Controle-Financeiro-Pessoal\n\nUm sistema de controle financeiro pessoal com seu foco principal \nem assuntos pessoais do cliente possuindo ferramentas simples de \ngerenciamento de dividas, renda individual ou familiar de cada cliente.\n\n\n\n\nDesenvolvedores:\nAlberto\nEmerson Leonardo Zock Alves\nJoão Filipe Rodovanski Alves\n\n\n\n\nCriado em 24/04/2017");
+        jTextArea1.setText("Controle-Financeiro-Pessoal\n\nUm sistema de controle financeiro pessoal com seu foco principal \nem assuntos pessoais do cliente possuindo ferramentas simples de \ngerenciamento de dividas, renda individual ou familiar de cada cliente.\n\n\n\n\nDesenvolvedores:\nAlberto Tuti Soki\nEmerson Leonardo Zock Alves\nJoão Filipe Rodovanski Alves\n\n\n\n\nCriado em 24/04/2017");
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -43,11 +43,11 @@ public class Sobre extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
 
         pack();
