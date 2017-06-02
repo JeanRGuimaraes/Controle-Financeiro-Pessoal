@@ -24,7 +24,7 @@ public class clBotoesDivida implements ActionListener {
         if ("cadastrar".equals(e.getActionCommand())) {
          
             try{
-//            
+          
                 this.divida = this.cadastroDivida.getDivida();
                  JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                  new clLog("Dívida Cadastrada");
@@ -45,10 +45,7 @@ public class clBotoesDivida implements ActionListener {
                    JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             }
 
-
-            //new DividaDao().insert(divida);
-            
-            
+            //new DividaDao().insert(divida);       
          
         }
 

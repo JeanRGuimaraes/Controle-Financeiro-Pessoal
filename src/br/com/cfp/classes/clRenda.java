@@ -8,8 +8,7 @@ public class clRenda {
     private int iCodigoRenda = 0;
     private float fRenda = -1;
     private String strNome = "", strPeriodoInicial = "", strPeriodoFinal = "", strDescricao = "";
-
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ GET'S E SET'S ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+    
     public int getiCodigoRenda() {
         return iCodigoRenda;
     }

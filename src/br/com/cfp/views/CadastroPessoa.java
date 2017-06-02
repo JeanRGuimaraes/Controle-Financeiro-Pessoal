@@ -21,30 +21,25 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
 
     private clBotoesPessoa botoes = new clBotoesPessoa(this);
 
-    public clPessoa getPessoa() {
+    public clPessoa getPessoa()throws clExceptions {
         //alimentar o objeto com informacoes do textField
         clPessoa pessoa = new clPessoa();
-        try
-        {
+        String numero = txtRG.getText().replace(".", "");
+        String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
+        
           verificaDados();
             pessoa.setiCodPessoa(Integer.parseInt(txtCodigo.getText()));
             //pessoa.setiCpf(Integer.parseInt(txtCpf.getText().replace(".", "").replace("-","")));
-            pessoa.setiCpf(  Double.parseDouble(txtCpf.getValue().toString().replace(".", "").replace("-", "")));
-            pessoa.setiRg(Integer.parseInt(txtRG.getText().replace(".", "")));
+           // pessoa.setiCpf(  Double.parseDouble(txtCpf.getValue().toString().replace(".", "").replace("-", "")));
+            pessoa.setiCpf((int) Float.parseFloat(numero1));
+            //pessoa.setiRg(Integer.parseInt(txtRG.getText().replace(".", "")));
+            pessoa.setiRg((int) Float.parseFloat(numero));
             pessoa.setiTelefone(Integer.parseInt(txtTelefone.getText()));
             pessoa.setStrNome(txtNome.getText());
             pessoa.setStrGenero(cbxGenero.getSelectedItem().toString());
             pessoa.setStrEmail(txtEmail.getText());
             pessoa.setStrProfissao(txtProfisao.getText());
-            
-        }catch(clExceptions mensagem)
-        {
-            mensagem.getMessage();
-            String erro = mensagem.toString();
-            JOptionPane.showMessageDialog(null, erro.replace("classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            return new clPessoa();
-        }
-
+           
         return pessoa;
     }
 
@@ -75,11 +70,12 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
     
     public clPessoa apagarPessoa(clPessoa pessoa)
     {
-        pessoa.apagarPessoa();
+       // pessoa.apagarPessoa();
         limparCampos();
         
         return null;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -283,14 +279,16 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         }
 
         try {
-            
-            Double.parseDouble(txtCpf.getValue().toString().replace(".", "").replace("-", ""));
+             String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
+             Float.parseFloat(numero1);
+            // Integer.parseInt(numero1);
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de CPF corretamente");
         }
-
+      
         try {
-            Integer.parseInt(txtRG.getText().replace(".", ""));
+             String numero = txtRG.getText().replace(".", "");
+            Integer.parseInt(numero);
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de RG corretamente");
         }
@@ -300,10 +298,19 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         }
 
         if (txtProfisao.getText().equals("")) {
-            throw new clExceptions("Por favor, preencha o campo de Profissão corretamente");
+            throw new clExceptions("Por favor, preencha o campo de profisão corretamente");
         }
         
-        if(cbxGenero.getSelectedItem().toString().equals("selecionar"))
+        try {
+            Integer.parseInt(txtTelefone.getText());
+        } catch (NumberFormatException ex) {
+            throw new clExceptions("Por favor, preencha o campo de telefone corretamente");
+        } 
+        if (txtEmail.getText().equals("")) {
+            throw new clExceptions("Por favor, preencha o campo de e-mail corretamente");
+        }
+        
+        if(cbxGenero.getSelectedItem().toString().equals("Selecionar"))
         {
              throw new clExceptions("Por favor, escolha um sexo");
         }
