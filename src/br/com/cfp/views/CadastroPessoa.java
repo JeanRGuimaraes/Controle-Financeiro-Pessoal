@@ -9,7 +9,6 @@ import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clPessoa;
 import br.com.cfp.eventos.clBotoesPessoa;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 /**
  *
