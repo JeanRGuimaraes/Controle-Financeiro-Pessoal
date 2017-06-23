@@ -23,7 +23,7 @@ public class DividaDAO {
             ps.setInt(1,codigo);
             ps.execute();
             conn.commit();
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+            
 
         } catch(SQLException e) {
 
@@ -79,7 +79,7 @@ public class DividaDAO {
             ps.execute();
             conn.commit();
 
-            JOptionPane.showMessageDialog(null, "Gravado com sucesso!");
+            
 
         } catch(SQLException e) {
 

@@ -30,13 +30,17 @@ public class clBotoesDivida implements ActionListener {
                 if(dividaDao.verificaDivida(this.divida.getiCod_divida()))
                 {
                    dividaDao.atualizar(this.divida);
+                JOptionPane.showMessageDialog(null, "Divida Atualizada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                new clLog("Dívida Atualizada");
+                   
                 }else
                 {
                     dividaDao.insert(this.divida);
-                   }
-                
                 JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Dívida Cadastrada");
+                   }
+                
+
                  
                  
             }catch(clExceptions mensagem)
