@@ -67,7 +67,7 @@ public class DividaDAO {
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into Divida (Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status) values(?,?,?,?,?,?)";
+            String sql = "insert into DIVIDAS (Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status) values(?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
             ps.setInt(1, divida.getiCod_divida());
@@ -121,7 +121,7 @@ public class DividaDAO {
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update Divida set Codigo=?, Descricao=?, valor=?, PeriodoInicial=?, PeriodoFinal=? ,Status=?  where CODIGO = " + divida.getiCod_divida() + "";
+            String sql = "update DIVIDAS set Codigo=?, Descricao=?, valor=?, PeriodoInicial=?, PeriodoFinal=? ,Status=?  where CODIGO = " + divida.getiCod_divida() + "";
             JOptionPane.showMessageDialog(null, divida.getiCod_divida());
             
             ps = conn.prepareStatement(sql);
@@ -170,7 +170,7 @@ public class DividaDAO {
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status from Divida where Codigo=?";
+            String sql = " select Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status from DIVIDAS where Codigo=?";
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, retorno.getiCod_divida());
