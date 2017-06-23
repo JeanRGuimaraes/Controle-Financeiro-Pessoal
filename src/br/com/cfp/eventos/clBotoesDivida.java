@@ -1,5 +1,6 @@
 package br.com.cfp.eventos;
 
+import br.com.cfp.classes.Dao.DividaDAO;
 import br.com.cfp.classes.clDivida;
 import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clLog;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 public class clBotoesDivida implements ActionListener {
 
     private clDivida divida;
-
+    private DividaDAO dividaDao = new DividaDAO();
     private CadastroDivida cadastroDivida;
 
     public clBotoesDivida(CadastroDivida cadastroDivida) {
@@ -26,16 +27,16 @@ public class clBotoesDivida implements ActionListener {
             try{
           
                 this.divida = this.cadastroDivida.getDivida();
-                 JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                 new clLog("Dívida Cadastrada");
-                 
-                 
-            System.out.println("Código: " + this.divida.getiCod_divida() + 1);
-            System.out.println("Valor: " + this.divida.getfValor());
-            System.out.println("Descrição: " + this.divida.getStrDescricao());
-            System.out.println("Periodo1: " + this.divida.getStrPeriodoInicial());
-            System.out.println("Perido2" + this.divida.getStrPeriodoFinal());
-            System.out.println("Status: " + this.divida.getStrStatus());
+                if(dividaDao.verificaDivida(this.divida.getiCod_divida()))
+                {
+                   dividaDao.atualizar(this.divida);
+                }else
+                {
+                    dividaDao.insert(this.divida);
+                   }
+                
+                JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                new clLog("Dívida Cadastrada");
                  
                  
             }catch(clExceptions mensagem)
@@ -63,6 +64,7 @@ public class clBotoesDivida implements ActionListener {
 
         if ("excluir".equals(e.getActionCommand())) {
             if (this.divida != null) {
+                dividaDao.delete(this.divida.getiCod_divida());
                 this.divida = this.cadastroDivida.apagarDivida(this.divida);
                 JOptionPane.showMessageDialog(null, "Divida Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Dívida Apagada");

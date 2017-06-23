@@ -67,7 +67,7 @@ public class DividaDAO {
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into DIVIDAS (Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status) values(?,?,?,?,?,?)";
+            String sql = "insert into DIVIDAS (CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS) values(?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
             ps.setInt(1, divida.getiCod_divida());
@@ -121,8 +121,8 @@ public class DividaDAO {
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update DIVIDAS set Codigo=?, Descricao=?, valor=?, PeriodoInicial=?, PeriodoFinal=? ,Status=?  where CODIGO = " + divida.getiCod_divida() + "";
-            JOptionPane.showMessageDialog(null, divida.getiCod_divida());
+            String sql = "update DIVIDAS set CODIGO=?, DESCRICAO=?, VALOR=?, DTINICIAL=?, DTFINAL=? ,STATUS=?  where CODIGO = " + divida.getiCod_divida() + "";
+            
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, divida.getiCod_divida());
@@ -134,7 +134,7 @@ public class DividaDAO {
             ps.execute();
             conn.commit();
             
-              JOptionPane.showMessageDialog(null,"atualizado com sucesso!" );
+              
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null,"erro ao atualizar!" );
 
@@ -164,13 +164,54 @@ public class DividaDAO {
             }
         }
     } 
+     
+     //return true se existe, return false se não existe
+      public boolean verificaDivida(int iCodigo)
+      {
+          Connection conn = null;
+        PreparedStatement ps = null;
+        boolean resultado = false;
+        
+        try {
+            conn = ConexaoDAO.getConnection();
+            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, iCodigo);
+            ResultSet rs = ps.executeQuery();
+           if(rs.next())
+           {
+               resultado = true;
+           }
+            
+            
+        } catch(SQLException e) {
+            System.out.println("ERRO: " + e.getMessage());
+        } finally {
+            if( ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+        }
+        return resultado;
+      }
     
     public clDivida getclDivida(clDivida retorno) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status from DIVIDAS where Codigo=?";
+            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, retorno.getiCod_divida());
