@@ -1,23 +1,24 @@
+
 package br.com.cfp.classes.Dao;
 
-import br.com.cfp.classes.clPessoa;
+import br.com.cfp.classes.clDivida;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-public class clConexaoPessoa {
+public class DividaDAO {
     
-     public void delete(int codigo) {
+    public void delete(int codigo) {
 
-        Conexao conex = new Conexao();
+        ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
         PreparedStatement ps = null;
 
         try {
             conn = conex.getConnection();
-            String sql = "delete from Pessoa where Codigo = ?";
+            String sql = "delete from DIVIDAS where CODIGO= ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,codigo);
             ps.execute();
@@ -57,26 +58,24 @@ public class clConexaoPessoa {
             }
         }
     }
-    public void insert(clPessoa pessoa) {
+    public void insert(clDivida divida) {
 
-         Conexao conex = new Conexao();
+         ConexaoDAO conex = new ConexaoDAO();
          Connection conn = null;
          PreparedStatement ps = null;
 
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into Pessoa (Codigo,Nome,Cpf,Rg,Telefone,Profisao,Email,Genero) values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into Divida (Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status) values(?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, pessoa.getiCodPessoa());
-            ps.setString(2, pessoa.getStrNome());
-            ps.setDouble(3, pessoa.getiCpf());
-            ps.setInt(4, pessoa.getiRg());
-            ps.setInt(5, pessoa.getiTelefone());
-            ps.setString(6, pessoa.getStrProfissao());
-            ps.setString(7, pessoa.getStrEmail());
-            ps.setString(8, pessoa.getStrGenero());
+            ps.setInt(1, divida.getiCod_divida());
+            ps.setString(2, divida.getStrDescricao());
+            ps.setFloat(3, divida.getfValor());
+            ps.setString(4, divida.getStrPeriodoInicial());
+            ps.setString(5, divida.getStrPeriodoFinal());
+            ps.setString(6, divida.getStrStatus());
             ps.execute();
             conn.commit();
 
@@ -116,27 +115,24 @@ public class clConexaoPessoa {
     }
 
     
-     public void atualizar(clPessoa pessoa) {
+     public void atualizar(clDivida divida) {
         Connection conn = null;
-        Conexao conex = new Conexao();
+        ConexaoDAO conex = new ConexaoDAO();
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update Pessoa set Codigo=?,Nome=?, Cpf=?,Rg=?,Telefone=?,Profisao=?,Email=?,Genero=?  where Codigo = " + pessoa.getiCodPessoa() + "";
-            JOptionPane.showMessageDialog(null, pessoa.getiCodPessoa());
+            String sql = "update Divida set Codigo=?, Descricao=?, valor=?, PeriodoInicial=?, PeriodoFinal=? ,Status=?  where CODIGO = " + divida.getiCod_divida() + "";
+            JOptionPane.showMessageDialog(null, divida.getiCod_divida());
             
-             ps = conn.prepareStatement(sql);
-            ps.setInt(1, pessoa.getiCodPessoa());
-            ps.setString(2, pessoa.getStrNome());
-            ps.setDouble(3, pessoa.getiCpf());
-            ps.setInt(4, pessoa.getiRg());
-            ps.setInt(5, pessoa.getiTelefone());
-            ps.setString(6, pessoa.getStrProfissao());
-            ps.setString(7, pessoa.getStrEmail());
-            ps.setString(8, pessoa.getStrGenero());
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, divida.getiCod_divida());
+            ps.setString(2, divida.getStrDescricao());
+            ps.setFloat(3, divida.getfValor());
+            ps.setString(4, divida.getStrPeriodoInicial());
+            ps.setString(5, divida.getStrPeriodoFinal());
+            ps.setString(6, divida.getStrStatus());
             ps.execute();
             conn.commit();
-
             
               JOptionPane.showMessageDialog(null,"atualizado com sucesso!" );
         } catch(SQLException e) {
@@ -169,26 +165,24 @@ public class clConexaoPessoa {
         }
     } 
     
-    public clPessoa getclPessoa(clPessoa retorno, Object object) {
+    public clDivida getclDivida(clDivida retorno) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            conn = Conexao.getConnection();
-            String sql = " select Codigo,Nome,Cpf,Rg,Telefone,Profisao,Email,Genero from Pessoa where Codigo=?";
+            conn = ConexaoDAO.getConnection();
+            String sql = " select Codigo,Descricao,Valor,PeriodoInicial,PeriodoFinal,Status from Divida where Codigo=?";
             
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, retorno.getiCodPessoa());
+            ps.setInt(1, retorno.getiCod_divida());
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-                clPessoa newp = new clPessoa();
-                newp.setiCodPessoa(rs.getInt(1));
-                newp.setStrNome(rs.getString(2));
-                newp.setiCpf(rs.getFloat(3));
-                newp.setiRg(rs.getInt(4));
-                newp.setiTelefone(rs.getInt(5));
-                newp.setStrProfissao(rs.getString(6));
-                newp.setStrEmail(rs.getString(7));
-                newp.setStrGenero(rs.getString(8));
+                clDivida newp = new clDivida();
+                newp.setiCod_divida(rs.getInt(1));
+                newp.setStrDescricao(rs.getString(2));
+                newp.setfValor(rs.getFloat(3));
+                newp.setStrPeriodoInicial(rs.getString(4));
+                newp.setStrPeriodoFinal(rs.getString(5));
+                newp.setStrStatus(rs.getString(6));
                 return newp;
             }
         } catch(SQLException e) {
@@ -212,5 +206,5 @@ public class clConexaoPessoa {
         return null;
     }
   
-    
-}
+    }
+      

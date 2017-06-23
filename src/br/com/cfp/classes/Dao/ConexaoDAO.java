@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-public class Conexao {
+public class ConexaoDAO {
 
      Connection conn = null;
     public Statement stm;//preparar e realizar pesquisas no banco de dados
