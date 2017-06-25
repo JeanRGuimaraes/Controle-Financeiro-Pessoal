@@ -1,15 +1,15 @@
 package br.com.cfp.classes.Dao;
 
+import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clPessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class PessoaDAO {
     
-     public void delete(int codigo) {
+     public void delete(int codigo) throws clExceptions{
 
         ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
@@ -17,24 +17,24 @@ public class PessoaDAO {
 
         try {
             conn = conex.getConnection();
-            String sql = "delete from Pessoa where Codigo = ?";
+            String sql = "delete from PESSOAwhere CODIGO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,codigo);
             ps.execute();
             conn.commit();
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+            
 
         } catch(SQLException e) {
-
-            System.out.println("ERRO: " + e.getMessage());
-            JOptionPane.showMessageDialog(null,"codigo não existe");
 
             if(conn != null){
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
+            }else
+            {
+                throw new clExceptions("ERRO: " + e.getMessage());
             }
         } 
         finally {
@@ -44,7 +44,7 @@ public class PessoaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
             }
             if(conn != null) {
@@ -52,12 +52,12 @@ public class PessoaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
             }
         }
     }
-    public void insert(clPessoa pessoa) {
+    public void insert(clPessoa pessoa) throws clExceptions {
 
          ConexaoDAO conex = new ConexaoDAO();
          Connection conn = null;
@@ -66,34 +66,33 @@ public class PessoaDAO {
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into Pessoa (Codigo,Nome,Cpf,Rg,Telefone,Profisao,Email,Genero) values(?,?,?,?,?,?,?,?)";
+            String sql = "insert into PESSOA (CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO) values(?,?,?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
             ps.setInt(1, pessoa.getiCodPessoa());
             ps.setString(2, pessoa.getStrNome());
-            ps.setDouble(3, pessoa.getiCpf());
+            ps.setString(3, pessoa.getStrCpf());
             ps.setInt(4, pessoa.getiRg());
-            ps.setInt(5, pessoa.getiTelefone());
+            ps.setString(5, pessoa.getStrTelefone());
             ps.setString(6, pessoa.getStrProfissao());
             ps.setString(7, pessoa.getStrEmail());
             ps.setString(8, pessoa.getStrGenero());
             ps.execute();
             conn.commit();
 
-            JOptionPane.showMessageDialog(null, "Gravado com sucesso!");
-
         } catch(SQLException e) {
-
-            JOptionPane.showMessageDialog(null,"erro " + e.getMessage());
 
             if(conn != null){
 
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("ERRO: " + e.getMessage());
                 }
-            }
+            }else
+             {
+                throw new clExceptions("ERRO: " + e.getMessage());
+                 }
         } finally {
 
             if( ps != null) {
@@ -101,7 +100,7 @@ public class PessoaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("ERRO: " + ex.getMessage());
                 }
             }
             if(conn != null) {
@@ -109,28 +108,27 @@ public class PessoaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("ERRO: " + ex.getMessage());
                 }
             }
         }
     }
 
     
-     public void atualizar(clPessoa pessoa) {
+     public void atualizar(clPessoa pessoa) throws clExceptions{
         Connection conn = null;
         ConexaoDAO conex = new ConexaoDAO();
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update Pessoa set Codigo=?,Nome=?, Cpf=?,Rg=?,Telefone=?,Profisao=?,Email=?,Genero=?  where Codigo = " + pessoa.getiCodPessoa() + "";
-            JOptionPane.showMessageDialog(null, pessoa.getiCodPessoa());
+            String sql = "update PESSOA set CODIGO=?,NOME=?, CPF=?,RG=?,TELEFONE=?,PROFISSAO=?,EMAIL=?,GENERO=?  where CODIGO = " + pessoa.getiCodPessoa();
             
              ps = conn.prepareStatement(sql);
             ps.setInt(1, pessoa.getiCodPessoa());
             ps.setString(2, pessoa.getStrNome());
-            ps.setDouble(3, pessoa.getiCpf());
+            ps.setString(3, pessoa.getStrCpf());
             ps.setInt(4, pessoa.getiRg());
-            ps.setInt(5, pessoa.getiTelefone());
+            ps.setString(5, pessoa.getStrTelefone());
             ps.setString(6, pessoa.getStrProfissao());
             ps.setString(7, pessoa.getStrEmail());
             ps.setString(8, pessoa.getStrGenero());
@@ -138,43 +136,48 @@ public class PessoaDAO {
             conn.commit();
 
             
-              JOptionPane.showMessageDialog(null,"atualizado com sucesso!" );
+              
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null,"erro ao atualizar!" );
+            
+            
 
             if(conn != null){
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro ao atualizar" + e.getMessage());
+                    
                 }
+            }else
+            {
+               throw new clExceptions("erro ao atualizar" + e.getMessage());
             }
-
+            
 
         } finally {
             if( ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
     } 
     
-    public clPessoa getclPessoa(clPessoa retorno, Object object) {
+    public clPessoa getclPessoa(clPessoa retorno) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select Codigo,Nome,Cpf,Rg,Telefone,Profisao,Email,Genero from Pessoa where Codigo=?";
+            String sql = " select CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO from Pessoa where CODIGO=?";
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, retorno.getiCodPessoa());
@@ -183,29 +186,29 @@ public class PessoaDAO {
                 clPessoa newp = new clPessoa();
                 newp.setiCodPessoa(rs.getInt(1));
                 newp.setStrNome(rs.getString(2));
-                newp.setiCpf(rs.getFloat(3));
+                newp.setStrCpf(rs.getString(3));
                 newp.setiRg(rs.getInt(4));
-                newp.setiTelefone(rs.getInt(5));
+                newp.setStrTelefone(rs.getString(5));
                 newp.setStrProfissao(rs.getString(6));
                 newp.setStrEmail(rs.getString(7));
                 newp.setStrGenero(rs.getString(8));
                 return newp;
             }
         } catch(SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            throw new clExceptions("erro " + e.getMessage());
         } finally {
             if( ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }

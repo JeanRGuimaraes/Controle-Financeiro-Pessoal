@@ -24,20 +24,28 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         //alimentar o objeto com informacoes do textField
         clPessoa pessoa = new clPessoa();
         String numero = txtRG.getText().replace(".", "");
-        String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
         
           verificaDados();
             pessoa.setiCodPessoa(Integer.parseInt(txtCodigo.getText()));
-            //pessoa.setiCpf(Integer.parseInt(txtCpf.getText().replace(".", "").replace("-","")));
-           // pessoa.setiCpf(  Double.parseDouble(txtCpf.getValue().toString().replace(".", "").replace("-", "")));
-            pessoa.setiCpf((int) Float.parseFloat(numero1));
+            pessoa.setStrCpf(txtCpf.getText().replace(".", "").replace("-", ""));
             //pessoa.setiRg(Integer.parseInt(txtRG.getText().replace(".", "")));
             pessoa.setiRg((int) Float.parseFloat(numero));
-            pessoa.setiTelefone(Integer.parseInt(txtTelefone.getText()));
+            pessoa.setStrTelefone(txtDDD.getText() + txtTelefone.getText().replace("-", ""));
             pessoa.setStrNome(txtNome.getText());
-            pessoa.setStrGenero(cbxGenero.getSelectedItem().toString());
             pessoa.setStrEmail(txtEmail.getText());
             pessoa.setStrProfissao(txtProfisao.getText());
+            
+            
+            if(cbxGenero.getSelectedItem().toString().equals("Masculino"))
+            {
+                pessoa.setStrGenero("M");
+            }else if(cbxGenero.getSelectedItem().toString().equals("Feminino"))
+            {
+                pessoa.setStrGenero("F");
+            }else
+            {
+                throw new clExceptions("Por favor, escolha um sexo");
+            }
            
         return pessoa;
     }
@@ -93,7 +101,6 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         cadastrar = new javax.swing.JButton();
         excluir = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
-        txtTelefone = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -106,6 +113,10 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         limpar = new javax.swing.JButton();
         txtCpf = new javax.swing.JFormattedTextField();
         txtRG = new javax.swing.JFormattedTextField();
+        txtDDD = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setTitle("Cadastro de Pessoa");
@@ -159,6 +170,16 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        jLabel2.setText("(");
+
+        jLabel3.setText(")");
+
+        try {
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -177,17 +198,23 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
                         .addComponent(jLabel16))
                     .addComponent(jLabel19)
                     .addComponent(jLabel18))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                        .addComponent(txtProfisao)
-                        .addComponent(txtEmail)
-                        .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(txtProfisao)
+                    .addComponent(txtEmail)
+                    .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelefone)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
@@ -221,8 +248,11 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
                     .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtProfisao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,14 +309,13 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
 
         try {
              String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
-             Float.parseFloat(numero1);
-            // Integer.parseInt(numero1);
+             Double.parseDouble(numero1);
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de CPF corretamente");
         }
       
         try {
-             String numero = txtRG.getText().replace(".", "");
+            String numero = txtRG.getText().replace(".", "");
             Integer.parseInt(numero);
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de RG corretamente");
@@ -301,9 +330,11 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         }
         
         try {
-            Integer.parseInt(txtTelefone.getText());
+            String numero1 = txtTelefone.getText().replace("-","");
+            Double.parseDouble(numero1);
+            Integer.parseInt(txtDDD.getText());
         } catch (NumberFormatException ex) {
-            throw new clExceptions("Por favor, preencha o campo de telefone corretamente");
+            throw new clExceptions("Por favor, preencha o campo de telefone corretamente erro: ");
         } 
         if (txtEmail.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de e-mail corretamente");
@@ -335,14 +366,17 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1Nome10;
     private javax.swing.JLabel jLabel1Nome11;
     private javax.swing.JLabel jLabel1Nome9;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton limpar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JFormattedTextField txtCpf;
+    private javax.swing.JTextField txtDDD;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtProfisao;
     private javax.swing.JFormattedTextField txtRG;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

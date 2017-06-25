@@ -2,9 +2,8 @@ package br.com.cfp.classes;
 
 public class clPessoa {
 
-    private int iCodPessoa = 0, iRg = -1, iTelefone = -1;
-    private double iCpf = -1;
-    private String strNome = "", strGenero = "", strEmail = "", strProfissao = "";
+    private int iCodPessoa = 0, iRg = -1;
+    private String strNome = "", strGenero = "", strEmail = "", strProfissao = "", strTelefone = "", strCpf = "";
    
     public int getiCodPessoa() {
         return iCodPessoa;
@@ -14,12 +13,12 @@ public class clPessoa {
         this.iCodPessoa = iCodPessoa;
     }
 
-    public double getiCpf() {
-        return iCpf;
+    public String getStrCpf() {
+        return strCpf;
     }
 
-    public void setiCpf(double iCpf) {
-        this.iCpf = iCpf;
+    public void setStrCpf(String strCpf) {
+        this.strCpf = strCpf;
     }
 
     public int getiRg() {
@@ -30,12 +29,12 @@ public class clPessoa {
         this.iRg = iRg;
     }
 
-    public int getiTelefone() {
-        return iTelefone;
+    public String getStrTelefone() {
+        return strTelefone;
     }
 
-    public void setiTelefone(int iTelefone) {
-        this.iTelefone = iTelefone;
+    public void setStrTelefone(String strTelefone) {
+        this.strTelefone = strTelefone;
     }
 
     public String getStrNome() {

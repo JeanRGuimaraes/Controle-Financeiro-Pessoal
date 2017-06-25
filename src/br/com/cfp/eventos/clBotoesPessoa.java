@@ -33,8 +33,8 @@ public class clBotoesPessoa implements ActionListener {
             System.out.println("Gênero: " + this.pessoa.getStrGenero());
             System.out.println("Email: " + this.pessoa.getStrEmail());
             System.out.println("Profissão: " + this.pessoa.getStrProfissao());
-            System.out.println("Telefone: " + this.pessoa.getiTelefone());
-            System.out.println("CPF: " + this.pessoa.getiCpf());
+            System.out.println("Telefone: " + this.pessoa.getStrTelefone());
+            System.out.println("CPF: " + this.pessoa.getStrCpf());
             System.out.println("RG: " + this.pessoa.getiRg());
                        
             }catch(clExceptions mensagem)
