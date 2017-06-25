@@ -1,5 +1,6 @@
 package br.com.cfp.eventos;
 
+import br.com.cfp.classes.Dao.PessoaDAO;
 import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clLog;
 import br.com.cfp.classes.clPessoa;
@@ -11,6 +12,7 @@ import javax.swing.JOptionPane;
 public class clBotoesPessoa implements ActionListener {
 
     private CadastroPessoa cadastroPessoa;
+    private PessoaDAO pessoaDao = new PessoaDAO();
     private clPessoa pessoa;
 
     public clBotoesPessoa(CadastroPessoa cadastroPessoa) {
@@ -21,39 +23,44 @@ public class clBotoesPessoa implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if ("cadastrar".equals(e.getActionCommand())) {    
-             try{
-           
+        if ("cadastrar".equals(e.getActionCommand())) {
+            try {
+
                 this.pessoa = this.cadastroPessoa.getPessoa();
-                 JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                 new clLog("Cadastro feito com sucesso");
-                 
-            System.out.println("Codigo: " + this.pessoa.getiCodPessoa()+1);
-            System.out.println("Nome: " + this.pessoa.getStrNome());
-            System.out.println("Gênero: " + this.pessoa.getStrGenero());
-            System.out.println("Email: " + this.pessoa.getStrEmail());
-            System.out.println("Profissão: " + this.pessoa.getStrProfissao());
-            System.out.println("Telefone: " + this.pessoa.getStrTelefone());
-            System.out.println("CPF: " + this.pessoa.getStrCpf());
-            System.out.println("RG: " + this.pessoa.getiRg());
-                       
-            }catch(clExceptions mensagem)
-            {
-                   mensagem.getMessage();
-                   String erro = mensagem.toString();
-                   JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
-            }    
+                if (pessoaDao.verificaPessoa(this.pessoa.getiCodPessoa())) {
+                    pessoaDao.atualizar(this.pessoa);
+                    JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                    new clLog("Cadastro atualizado com sucesso");
+                } else {
+                    pessoaDao.insert(this.pessoa);
+                    JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                    new clLog("Cadastro feito com sucesso");
+                }
+
+            } catch (clExceptions mensagem) {
+                mensagem.getMessage();
+                String erro = mensagem.toString();
+                JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+            }
         }
 
         if ("excluir".equals(e.getActionCommand())) {
 
             if (this.pessoa != null) {
-                this.pessoa = this.cadastroPessoa.apagarPessoa(this.pessoa);
-                JOptionPane.showMessageDialog(null, "Cadastro apagado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                new clLog("Cadastro apagado Apagada");
-            }else
-            {
-            JOptionPane.showMessageDialog(null, "Não possuem dados para apagar", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+
+                try {
+                    pessoaDao.delete(this.pessoa.getiCodPessoa());
+                    this.pessoa = this.cadastroPessoa.apagarPessoa(this.pessoa);
+                    JOptionPane.showMessageDialog(null, "Cadastro apagado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                    new clLog("Cadastro apagado Apagada");
+                } catch (clExceptions mensagem) {
+                    mensagem.getMessage();
+                    String erro = mensagem.toString();
+                    JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Não possuem dados para apagar", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Tentativa de apagar cadastro pessoa, porem não possui dados para apagar");
             }
         }

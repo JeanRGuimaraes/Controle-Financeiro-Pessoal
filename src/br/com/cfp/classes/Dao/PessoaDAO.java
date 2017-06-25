@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PessoaDAO {
-    
-     public void delete(int codigo) throws clExceptions{
+
+    public void delete(int codigo) throws clExceptions {
 
         ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
@@ -17,57 +17,55 @@ public class PessoaDAO {
 
         try {
             conn = conex.getConnection();
-            String sql = "delete from PESSOAwhere CODIGO = ?";
+            String sql = "delete from PESSOAS where CODIGO = ?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,codigo);
+            ps.setInt(1, codigo);
             ps.execute();
             conn.commit();
-            
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
 
-            if(conn != null){
+            if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
-            }else
-            {
+            } else {
                 throw new clExceptions("ERRO: " + e.getMessage());
             }
-        } 
-        finally {
+        } finally {
 
-            if( ps != null) {
+            if (ps != null) {
 
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
 
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
             }
         }
     }
+
     public void insert(clPessoa pessoa) throws clExceptions {
 
-         ConexaoDAO conex = new ConexaoDAO();
-         Connection conn = null;
-         PreparedStatement ps = null;
+        ConexaoDAO conex = new ConexaoDAO();
+        Connection conn = null;
+        PreparedStatement ps = null;
 
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into PESSOA (CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO) values(?,?,?,?,?,?,?,?)";
-          
+            String sql = "insert into PESSOAS (CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO) values(?,?,?,?,?,?,?,?)";
+
             ps = conn.prepareStatement(sql);
             ps.setInt(1, pessoa.getiCodPessoa());
             ps.setString(2, pessoa.getStrNome());
@@ -80,22 +78,21 @@ public class PessoaDAO {
             ps.execute();
             conn.commit();
 
-        } catch(SQLException e) {
+        } catch (SQLException e) {
 
-            if(conn != null){
+            if (conn != null) {
 
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
                     throw new clExceptions("ERRO: " + e.getMessage());
                 }
-            }else
-             {
+            } else {
                 throw new clExceptions("ERRO: " + e.getMessage());
-                 }
+            }
         } finally {
 
-            if( ps != null) {
+            if (ps != null) {
 
                 try {
                     ps.close();
@@ -103,7 +100,7 @@ public class PessoaDAO {
                     throw new clExceptions("ERRO: " + ex.getMessage());
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
 
                 try {
                     conn.close();
@@ -114,16 +111,15 @@ public class PessoaDAO {
         }
     }
 
-    
-     public void atualizar(clPessoa pessoa) throws clExceptions{
+    public void atualizar(clPessoa pessoa) throws clExceptions {
         Connection conn = null;
         ConexaoDAO conex = new ConexaoDAO();
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update PESSOA set CODIGO=?,NOME=?, CPF=?,RG=?,TELEFONE=?,PROFISSAO=?,EMAIL=?,GENERO=?  where CODIGO = " + pessoa.getiCodPessoa();
-            
-             ps = conn.prepareStatement(sql);
+            String sql = "update PESSOAS set CODIGO=?,NOME=?, CPF=?,RG=?,TELEFONE=?,PROFISSAO=?,EMAIL=?,GENERO=?  where CODIGO = " + pessoa.getiCodPessoa();
+
+            ps = conn.prepareStatement(sql);
             ps.setInt(1, pessoa.getiCodPessoa());
             ps.setString(2, pessoa.getStrNome());
             ps.setString(3, pessoa.getStrCpf());
@@ -135,34 +131,28 @@ public class PessoaDAO {
             ps.execute();
             conn.commit();
 
-            
-              
-        } catch(SQLException e) {
-            
-            
+        } catch (SQLException e) {
 
-            if(conn != null){
+            if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
                     throw new clExceptions("erro ao atualizar" + e.getMessage());
-                    
+
                 }
-            }else
-            {
-               throw new clExceptions("erro ao atualizar" + e.getMessage());
+            } else {
+                throw new clExceptions("erro ao atualizar" + e.getMessage());
             }
-            
 
         } finally {
-            if( ps != null) {
+            if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
                     throw new clExceptions("erro " + ex.getMessage());
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
@@ -170,19 +160,19 @@ public class PessoaDAO {
                 }
             }
         }
-    } 
-    
+    }
+
     public clPessoa getclPessoa(clPessoa retorno) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO from Pessoa where CODIGO=?";
-            
+            String sql = " select CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO from PESSOAS where CODIGO=?";
+
             ps = conn.prepareStatement(sql);
             ps.setInt(1, retorno.getiCodPessoa());
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 clPessoa newp = new clPessoa();
                 newp.setiCodPessoa(rs.getInt(1));
                 newp.setStrNome(rs.getString(2));
@@ -194,17 +184,17 @@ public class PessoaDAO {
                 newp.setStrGenero(rs.getString(8));
                 return newp;
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new clExceptions("erro " + e.getMessage());
         } finally {
-            if( ps != null) {
+            if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
                     throw new clExceptions("erro " + ex.getMessage());
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
@@ -214,6 +204,43 @@ public class PessoaDAO {
         }
         return null;
     }
-  
-    
+
+    //return true se existe, return false se não existe
+    public boolean verificaPessoa(int iCodigo) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        boolean resultado = false;
+
+        try {
+            conn = ConexaoDAO.getConnection();
+            String sql = "select CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO from PESSOAS where CODIGO=?";
+
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, iCodigo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                resultado = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERRO: " + e.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+        }
+        return resultado;
+    }
+
 }

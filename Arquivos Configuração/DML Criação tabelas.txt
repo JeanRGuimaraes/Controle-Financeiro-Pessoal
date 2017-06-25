@@ -11,9 +11,9 @@ PRIMARY KEY(CODIGO)
 );
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Tabela de PESSOA
+Tabela de PESSOAS
 
-create table PESSOA(
+create table PESSOAS(
 CODIGO int not null,
 NOME VARCHAR(200),
 RG NUMERIC,
