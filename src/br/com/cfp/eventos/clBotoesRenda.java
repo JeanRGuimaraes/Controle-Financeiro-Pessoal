@@ -1,6 +1,7 @@
 
 package br.com.cfp.eventos;
 
+import br.com.cfp.classes.Dao.RendaDAO;
 import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clLog;
 import br.com.cfp.classes.clRenda;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 public class clBotoesRenda implements ActionListener{
 
     private CadastroRenda cadastroRenda;
+    private RendaDAO rendaDAO=new RendaDAO();
     private clRenda renda;
     
     public clBotoesRenda(CadastroRenda cadastroRenda)
@@ -26,17 +28,15 @@ public class clBotoesRenda implements ActionListener{
         {
             try{
                     this.renda = this.cadastroRenda.getRenda();
-
-                    
-                    System.out.println("Codigo: " + renda.getiCodigoRenda() + 1);
-                    System.out.println("Renda: " + renda.getfRenda());
-                    System.out.println("Nome: " + renda.getStrNome());
-                    System.out.println("Periodo Inicial: " + renda.getStrPeriodoInicial());
-                    System.out.println("Periodo Final: " + renda.getStrPeriodoFinal());
-                    System.out.println("Observação: " + renda.getStrDescricao());
-                    
+                    if (rendaDAO.verificaRenda(this.renda.getiCodigoRenda())) {
+                    rendaDAO.atualizar(this.renda);
                     JOptionPane.showMessageDialog(null, "Renda Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                    new clLog("Renda Cadastrada");
+                    new clLog("Cadastro atualizado com sucesso");
+                } else {
+                    rendaDAO.insert(this.renda);
+                    JOptionPane.showMessageDialog(null, "Renda Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                    new clLog("Cadastro de Renda feito com sucesso");
+                }
             }
             catch(clExceptions mensagem)
             {
@@ -63,17 +63,19 @@ public class clBotoesRenda implements ActionListener{
         
         if("excluir".equals(e.getActionCommand()))
         {
-            if(renda != null)
-            {
-                renda = cadastroRenda.apagarRenda();
-                JOptionPane.showMessageDialog(null, "Renda Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                new clLog("Renda Apagada");
-            }else
-            {
+            if (this.renda != null) {
+
+                rendaDAO.delete(this.renda.getiCodigoRenda());
+                this.renda = this.cadastroRenda.apagarRenda(this.renda);
+                JOptionPane.showMessageDialog(null, "Cadastro de Renda deletado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                new clLog("Cadastro de Renda deletado");
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Não possuem dados para apagar", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                 new clLog("Tentativa de apagar renda, porem não possui dados para apagar");
+                new clLog("Tentativa de apagar cadastro de Renda, porem não possui dados para apagar");
             }
+        }
         }
     }
     
-}
+

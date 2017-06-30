@@ -46,7 +46,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         return renda;
     }
 
-    public clRenda apagarRenda() {
+    public clRenda apagarRenda(clRenda renda) {
         limparCampos();
 
         return null;

@@ -1,6 +1,5 @@
 
 package br.com.cfp.classes.Dao;
-
 import br.com.cfp.classes.clRenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +17,7 @@ public class RendaDAO {
 
         try {
             conn = conex.getConnection();
-            String sql = "delete from Renda where Codigo = ?";
+            String sql = "delete from RENDA where CODIGO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,codigo);
             ps.execute();
@@ -67,14 +66,14 @@ public class RendaDAO {
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into Renda (Codigo,Nome,Renda,PeriodoInicial,PeriodoFinal,Obervacoes) values(?,?,?,?,?,?)";
+            String sql = "insert into RENDA (CODIGO,NOME,RENDA,PERIODOINICIAL,PERIODOFINAL,OBSERVACOES) values(?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
             ps.setInt(1, renda.getiCodigoRenda());
             ps.setString(2, renda.getStrNome());
             ps.setDouble(3, renda.getfRenda());
             ps.setString(4, renda.getStrPeriodoInicial());
-            ps.setString(5, renda.getStrPeriodoInicial());
+            ps.setString(5, renda.getStrPeriodoFinal());
             ps.setString(6, renda.getStrDescricao());
             ps.execute();
             conn.commit();
@@ -121,7 +120,7 @@ public class RendaDAO {
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update Renda set Codigo=?,Nome=?, Renda=?,PeriodoInicial=?,PeriodoFinal=?,Observacoes=? where Codigo = " + renda.getiCodigoRenda() + "";
+            String sql = "update RENDA set CODIGO=?,NOME=?, RENDA=?,PERIODOINICIAL=?,PERIODOFINAL=?,OBSERVACOES=? where CODIGO = " + renda.getiCodigoRenda() + "";
             JOptionPane.showMessageDialog(null, renda.getiCodigoRenda());
             
             ps = conn.prepareStatement(sql);
@@ -171,7 +170,7 @@ public class RendaDAO {
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select Codigo,Nome,Renda,PeriodoInicial,PeriodoFinal,Obervacoes from Renda where Codigo=?";
+            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIDOFINAL,OBSERVACOES from RENDA where CODIGO=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, retorno.getiCodigoRenda());
             ResultSet rs = ps.executeQuery();
@@ -207,6 +206,42 @@ public class RendaDAO {
         return null;
     }
   
-    
+    //return true se existe, return false se não existe
+    public boolean verificaRenda(int iCodigo) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        boolean resultado = false;
+
+        try {
+            conn = ConexaoDAO.getConnection();
+            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIDOFINAL,OBSERVACOES from RENDA where CODIGO=?"; 
+
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, iCodigo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                resultado = true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERRO: " + e.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    System.out.println("ERRO: " + ex.getMessage());
+                }
+            }
+        }
+        return resultado;
+    }
     
 }
