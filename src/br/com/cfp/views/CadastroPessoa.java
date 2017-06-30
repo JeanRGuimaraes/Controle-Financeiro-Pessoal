@@ -75,6 +75,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         cancelar.addActionListener(botoes);
         excluir.addActionListener(botoes);
         limpar.addActionListener(botoes);
+        jbtnPesquisar.addActionListener(botoes);
     }
     
     public clPessoa apagarPessoa(clPessoa pessoa)
@@ -85,6 +86,41 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         return null;
     }
     
+    public int getCodPessoa() throws clExceptions
+    {
+        int cod;
+        try {
+            cod = Integer.parseInt(txtCodigo.getText());
+            return cod;
+        } catch (NumberFormatException ex) {
+            throw new clExceptions("Valor de Código invalido");
+        }
+    }
+    
+    public void setPessoa(clPessoa pessoa)
+    {
+        txtCodigo.setText(Integer.toString(pessoa.getiCodPessoa()));
+        txtNome.setText(pessoa.getStrNome());
+        txtCpf.setText(pessoa.getStrCpf());
+        txtRG.setText(Integer.toString(pessoa.getiRg()));
+        txtTelefone.setText(pessoa.getStrTelefone().substring(2, pessoa.getStrTelefone().length()));
+        txtDDD.setText(pessoa.getStrTelefone().substring(0, 2));
+        txtProfisao.setText(pessoa.getStrProfissao());
+        txtEmail.setText(pessoa.getStrEmail());
+        
+        switch (pessoa.getStrGenero()) {
+            case "M":
+                cbxGenero.setSelectedIndex(1);
+                break;
+            case "F":
+                cbxGenero.setSelectedIndex(1);
+                break;
+            default:
+                cbxGenero.setSelectedIndex(0);
+                break;
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,6 +155,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JFormattedTextField();
         txtDDD = new javax.swing.JFormattedTextField();
+        jbtnPesquisar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cadastro de Pessoa");
@@ -188,6 +225,8 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        jbtnPesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -209,8 +248,11 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jbtnPesquisar))
+                        .addComponent(txtNome)
                         .addComponent(txtProfisao)
                         .addComponent(txtEmail)
                         .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,7 +284,9 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnPesquisar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Nome9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,6 +335,8 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         cancelar.addActionListener(listener);
         limpar.setActionCommand("limpar");
         limpar.addActionListener(listener);
+        jbtnPesquisar.setActionCommand("pesquisar");
+        jbtnPesquisar.addActionListener(listener);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -378,6 +424,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton jbtnPesquisar;
     private javax.swing.JButton limpar;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JFormattedTextField txtCpf;

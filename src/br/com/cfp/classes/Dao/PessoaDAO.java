@@ -162,7 +162,7 @@ public class PessoaDAO {
         }
     }
 
-    public clPessoa getclPessoa(clPessoa retorno) throws clExceptions {
+    public clPessoa getPessoa(int codigo) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -170,7 +170,7 @@ public class PessoaDAO {
             String sql = " select CODIGO,NOME,CPF,RG,TELEFONE,PROFISSAO,EMAIL,GENERO from PESSOAS where CODIGO=?";
 
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, retorno.getiCodPessoa());
+            ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 clPessoa newp = new clPessoa();
@@ -182,7 +182,14 @@ public class PessoaDAO {
                 newp.setStrProfissao(rs.getString(6));
                 newp.setStrEmail(rs.getString(7));
                 newp.setStrGenero(rs.getString(8));
-                return newp;
+                if( newp == null)
+                {
+                    throw new clExceptions("Nenhuma pessoa encontrada");
+                }else
+                {
+                    return newp;
+                }
+                
             }
         } catch (SQLException e) {
             throw new clExceptions("erro " + e.getMessage());

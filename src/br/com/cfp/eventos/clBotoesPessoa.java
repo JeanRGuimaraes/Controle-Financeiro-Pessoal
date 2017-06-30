@@ -75,5 +75,18 @@ public class clBotoesPessoa implements ActionListener {
 
         }
 
+        if ("pesquisar".equals(e.getActionCommand())) {
+            try {
+                this.pessoa = pessoaDao.getPessoa(cadastroPessoa.getCodPessoa());
+                cadastroPessoa.setPessoa(this.pessoa);
+                JOptionPane.showMessageDialog(null, "Pessoa encontrada", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                new clLog("Pessoa encontrada no banco de dados");
+            } catch (clExceptions mensagem) {
+                mensagem.getMessage();
+                String erro = mensagem.toString();
+                JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
     }
 }
