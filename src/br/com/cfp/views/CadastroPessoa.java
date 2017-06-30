@@ -20,33 +20,29 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
 
     private clBotoesPessoa botoes = new clBotoesPessoa(this);
 
-    public clPessoa getPessoa()throws clExceptions {
+    public clPessoa getPessoa() throws clExceptions {
         //alimentar o objeto com informacoes do textField
         clPessoa pessoa = new clPessoa();
         String numero = txtRG.getText().replace(".", "");
-        
-          verificaDados();
-            pessoa.setiCodPessoa(Integer.parseInt(txtCodigo.getText()));
-            pessoa.setStrCpf(txtCpf.getText().replace(".", "").replace("-", ""));
-            //pessoa.setiRg(Integer.parseInt(txtRG.getText().replace(".", "")));
-            pessoa.setiRg((int) Float.parseFloat(numero));
-            pessoa.setStrTelefone(txtDDD.getText() + txtTelefone.getText().replace("-", ""));
-            pessoa.setStrNome(txtNome.getText());
-            pessoa.setStrEmail(txtEmail.getText());
-            pessoa.setStrProfissao(txtProfisao.getText());
-            
-            
-            if(cbxGenero.getSelectedItem().toString().equals("Masculino"))
-            {
-                pessoa.setStrGenero("M");
-            }else if(cbxGenero.getSelectedItem().toString().equals("Feminino"))
-            {
-                pessoa.setStrGenero("F");
-            }else
-            {
-                throw new clExceptions("Por favor, escolha um sexo");
-            }
-           
+
+        verificaDados();
+        pessoa.setiCodPessoa(Integer.parseInt(txtCodigo.getText()));
+        pessoa.setStrCpf(txtCpf.getText().replace(".", "").replace("-", ""));
+        //pessoa.setiRg(Integer.parseInt(txtRG.getText().replace(".", "")));
+        pessoa.setiRg((int) Float.parseFloat(numero));
+        pessoa.setStrTelefone(txtDDD.getText() + txtTelefone.getText().replace("-", ""));
+        pessoa.setStrNome(txtNome.getText());
+        pessoa.setStrEmail(txtEmail.getText());
+        pessoa.setStrProfissao(txtProfisao.getText());
+
+        if (cbxGenero.getSelectedItem().toString().equals("Masculino")) {
+            pessoa.setStrGenero("M");
+        } else if (cbxGenero.getSelectedItem().toString().equals("Feminino")) {
+            pessoa.setStrGenero("F");
+        } else {
+            throw new clExceptions("Por favor, escolha um sexo");
+        }
+
         return pessoa;
     }
 
@@ -77,17 +73,15 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         limpar.addActionListener(botoes);
         jbtnPesquisar.addActionListener(botoes);
     }
-    
-    public clPessoa apagarPessoa(clPessoa pessoa)
-    {
-       // pessoa.apagarPessoa();
+
+    public clPessoa apagarPessoa(clPessoa pessoa) {
+        // pessoa.apagarPessoa();
         limparCampos();
-        
+
         return null;
     }
-    
-    public int getCodPessoa() throws clExceptions
-    {
+
+    public int getCodPessoa() throws clExceptions {
         int cod;
         try {
             cod = Integer.parseInt(txtCodigo.getText());
@@ -96,30 +90,35 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
             throw new clExceptions("Valor de Código invalido");
         }
     }
-    
-    public void setPessoa(clPessoa pessoa)
-    {
-        txtCodigo.setText(Integer.toString(pessoa.getiCodPessoa()));
-        txtNome.setText(pessoa.getStrNome());
-        txtCpf.setText(pessoa.getStrCpf());
-        txtRG.setText(Integer.toString(pessoa.getiRg()));
-        txtTelefone.setText(pessoa.getStrTelefone().substring(2, pessoa.getStrTelefone().length()));
-        txtDDD.setText(pessoa.getStrTelefone().substring(0, 2));
-        txtProfisao.setText(pessoa.getStrProfissao());
-        txtEmail.setText(pessoa.getStrEmail());
-        
-        switch (pessoa.getStrGenero()) {
-            case "M":
-                cbxGenero.setSelectedIndex(1);
-                break;
-            case "F":
-                cbxGenero.setSelectedIndex(1);
-                break;
-            default:
-                cbxGenero.setSelectedIndex(0);
-                break;
+
+    public void setPessoa(clPessoa pessoa) throws clExceptions  {
+        if (pessoa != null) {
+            txtCodigo.setText(Integer.toString(pessoa.getiCodPessoa()));
+            txtNome.setText(pessoa.getStrNome());
+            txtCpf.setText(pessoa.getStrCpf());
+            txtRG.setText(Integer.toString(pessoa.getiRg()));
+            txtTelefone.setText(pessoa.getStrTelefone().substring(2, pessoa.getStrTelefone().length()));
+            txtDDD.setText(pessoa.getStrTelefone().substring(0, 2));
+            txtProfisao.setText(pessoa.getStrProfissao());
+            txtEmail.setText(pessoa.getStrEmail());
+
+            switch (pessoa.getStrGenero()) {
+                case "M":
+                    cbxGenero.setSelectedIndex(1);
+                    break;
+                case "F":
+                    cbxGenero.setSelectedIndex(1);
+                    break;
+                default:
+                    cbxGenero.setSelectedIndex(0);
+                    break;
+            }
+        }else
+        {
+            limparCampos();
+            throw new clExceptions("Pessoa não encontrada");
         }
-        
+
     }
 
     /**
@@ -363,12 +362,12 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         }
 
         try {
-             String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
-             Double.parseDouble(numero1);
+            String numero1 = txtCpf.getText().replace(".", "").replace("-", "");
+            Double.parseDouble(numero1);
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de CPF corretamente");
         }
-      
+
         try {
             String numero = txtRG.getText().replace(".", "");
             Integer.parseInt(numero);
@@ -383,28 +382,26 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         if (txtProfisao.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de profisão corretamente");
         }
-        
+
         try {
-            String numero1 = txtTelefone.getText().replace("-","");
+            String numero1 = txtTelefone.getText().replace("-", "");
             Double.parseDouble(numero1);
             Integer.parseInt(txtDDD.getText());
         } catch (NumberFormatException ex) {
             throw new clExceptions("Por favor, preencha o campo de telefone corretamente erro: ");
-        } 
+        }
         if (txtEmail.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de e-mail corretamente");
         }
-        
-        if(cbxGenero.getSelectedItem().toString().equals("Selecionar"))
-        {
-             throw new clExceptions("Por favor, escolha um sexo");
+
+        if (cbxGenero.getSelectedItem().toString().equals("Selecionar")) {
+            throw new clExceptions("Por favor, escolha um sexo");
         }
 
         //email não é obrigatório
-       /* if (txtEmail.getText().equals("")) {
+        /* if (txtEmail.getText().equals("")) {
             throw new clExceptions("Por favor, preencha o campo de Email corretamente");
         }*/
-
     }
 
 

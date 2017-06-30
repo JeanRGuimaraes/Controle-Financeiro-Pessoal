@@ -182,14 +182,10 @@ public class PessoaDAO {
                 newp.setStrProfissao(rs.getString(6));
                 newp.setStrEmail(rs.getString(7));
                 newp.setStrGenero(rs.getString(8));
-                if( newp == null)
-                {
-                    throw new clExceptions("Nenhuma pessoa encontrada");
-                }else
-                {
-                    return newp;
-                }
                 
+                return newp;
+ 
+
             }
         } catch (SQLException e) {
             throw new clExceptions("erro " + e.getMessage());
@@ -230,21 +226,21 @@ public class PessoaDAO {
             }
 
         } catch (SQLException e) {
-            
-             throw new clExceptions("erro " + e.getMessage());
+
+            throw new clExceptions("erro " + e.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("erro " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("erro " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
