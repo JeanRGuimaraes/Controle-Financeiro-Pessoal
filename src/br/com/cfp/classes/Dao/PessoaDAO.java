@@ -206,7 +206,7 @@ public class PessoaDAO {
     }
 
     //return true se existe, return false se não existe
-    public boolean verificaPessoa(int iCodigo) {
+    public boolean verificaPessoa(int iCodigo) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean resultado = false;
@@ -223,20 +223,21 @@ public class PessoaDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            
+             throw new clExceptions("erro " + e.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                     throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                     throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
