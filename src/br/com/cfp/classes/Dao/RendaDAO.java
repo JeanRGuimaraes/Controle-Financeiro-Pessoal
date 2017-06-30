@@ -1,5 +1,6 @@
 
 package br.com.cfp.classes.Dao;
+import br.com.cfp.classes.clExceptions;
 import br.com.cfp.classes.clRenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class RendaDAO {
     
-      public void delete(int codigo) {
+      public void delete(int codigo)throws clExceptions {
 
         ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
@@ -26,38 +27,41 @@ public class RendaDAO {
 
         } catch(SQLException e) {
 
-            System.out.println("ERRO: " + e.getMessage());
-            JOptionPane.showMessageDialog(null,"codigo não existe");
+          //  System.out.println("ERRO: " + e.getMessage());
+         //   JOptionPane.showMessageDialog(null,"codigo não existe");
 
-            if(conn != null){
+            
+            if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
+            } else {
+                throw new clExceptions("ERRO: " + e.getMessage());
             }
-        } 
-        finally {
+        } finally {
 
-            if( ps != null) {
+            if (ps != null) {
 
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
 
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                    throw new clExceptions("codigo não existe");
                 }
             }
         }
     }
-    public void insert(clRenda renda) {
+
+    public void insert(clRenda renda)throws clExceptions {
 
          ConexaoDAO conex = new ConexaoDAO();
          Connection conn = null;
@@ -78,7 +82,7 @@ public class RendaDAO {
             ps.execute();
             conn.commit();
 
-            JOptionPane.showMessageDialog(null, "Gravado com sucesso!");
+           // JOptionPane.showMessageDialog(null, "Gravado com sucesso!");
 
         } catch(SQLException e) {
 
@@ -114,7 +118,7 @@ public class RendaDAO {
     }
 
     
-     public void atualizar(clRenda renda) {
+     public void atualizar(clRenda renda)throws clExceptions {
         Connection conn = null;
         ConexaoDAO conex = new ConexaoDAO();
         PreparedStatement ps = null;
@@ -132,40 +136,38 @@ public class RendaDAO {
             ps.setString(6, renda.getStrDescricao());
             ps.execute();
             conn.commit();
-
             
-              JOptionPane.showMessageDialog(null,"atualizado com sucesso!" );
+         // JOptionPane.showMessageDialog(null,"atualizado com sucesso!" );
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null,"erro ao atualizar!" );
-
-            if(conn != null){
+           if (conn != null) {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro ao atualizar" + e.getMessage());
+
                 }
+            } else {
+                throw new clExceptions("erro ao atualizar" + e.getMessage());
             }
 
-
         } finally {
-            if( ps != null) {
+            if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
-            if(conn != null) {
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
     } 
-    
-    public clRenda getclPessoa(clRenda retorno, Object object) {
+    public clRenda getclPessoa(clRenda retorno) throws clExceptions{
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -207,7 +209,7 @@ public class RendaDAO {
     }
   
     //return true se existe, return false se não existe
-    public boolean verificaRenda(int iCodigo) {
+    public boolean verificaRenda(int iCodigo) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean resultado = false;
@@ -223,25 +225,24 @@ public class RendaDAO {
                 resultado = true;
             }
 
-        } catch (SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+        } catch (SQLException ex) {
+             throw new clExceptions("ERRO " + ex.getMessage());
         } finally {
             if (ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                      throw new clExceptions("ERRO " + ex.getMessage());
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("ERRO " + ex.getMessage());
                 }
             }
         }
         return resultado;
-    }
-    
+    } 
 }

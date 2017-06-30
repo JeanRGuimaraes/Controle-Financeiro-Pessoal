@@ -8,6 +8,8 @@ import br.com.cfp.classes.clRenda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import br.com.cfp.views.CadastroRenda;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class clBotoesRenda implements ActionListener{
@@ -65,7 +67,11 @@ public class clBotoesRenda implements ActionListener{
         {
             if (this.renda != null) {
 
-                rendaDAO.delete(this.renda.getiCodigoRenda());
+                try {
+                    rendaDAO.delete(this.renda.getiCodigoRenda());
+                } catch (clExceptions ex) {
+                    Logger.getLogger(clBotoesRenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.renda = this.cadastroRenda.apagarRenda(this.renda);
                 JOptionPane.showMessageDialog(null, "Cadastro de Renda deletado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Cadastro de Renda deletado");
