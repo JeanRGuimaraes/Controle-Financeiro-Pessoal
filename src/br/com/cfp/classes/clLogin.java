@@ -7,6 +7,7 @@ public class clLogin {
     
     private String strUsuario;
     private String strSenha;
+    private String strNome;
 
     public String getStrUsuario() {
         return strUsuario;
@@ -22,6 +23,14 @@ public class clLogin {
 
     public void setStrSenha(String strSenha) {
         this.strSenha = strSenha;
+    }
+    
+    public String getStrNome() {
+        return strNome;
+    }
+    
+     public void setStrNome(String strNome) {
+        this.strNome = strNome;
     }
 
 }
