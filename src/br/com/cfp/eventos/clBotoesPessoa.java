@@ -61,7 +61,7 @@ public class clBotoesPessoa implements ActionListener {
 
             } else {
                 JOptionPane.showMessageDialog(null, "Não possuem dados para apagar", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                new clLog("Tentativa de apagar cadastro pessoa, porem não possui dados para apagar");
+                new clLog("Tentativa de apagar pessoa, porem não possui dados para apagar");
             }
         }
         if ("cancelar".equals(e.getActionCommand())) {
@@ -84,6 +84,7 @@ public class clBotoesPessoa implements ActionListener {
             } catch (clExceptions mensagem) {
                 mensagem.getMessage();
                 String erro = mensagem.toString();
+                new clLog("Erro na busca da pessoa: " + erro);
                 JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
             }
         }

@@ -2,6 +2,7 @@
 package br.com.cfp.classes.Dao;
 
 import br.com.cfp.classes.clDivida;
+import br.com.cfp.classes.clExceptions;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class DividaDAO {
     
-    public void delete(int codigo) {
+    public void delete(int codigo) throws clExceptions{
 
         ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
@@ -27,14 +28,11 @@ public class DividaDAO {
 
         } catch(SQLException e) {
 
-            System.out.println("ERRO: " + e.getMessage());
-            JOptionPane.showMessageDialog(null,"codigo não existe");
-
             if(conn != null){
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
             }
         } 
@@ -45,7 +43,7 @@ public class DividaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
             }
             if(conn != null) {
@@ -53,12 +51,12 @@ public class DividaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     JOptionPane.showMessageDialog(null,"codigo não existe");
+                     throw new clExceptions("codigo não existe");
                 }
             }
         }
     }
-    public void insert(clDivida divida) {
+    public void insert(clDivida divida) throws clExceptions {
 
          ConexaoDAO conex = new ConexaoDAO();
          Connection conn = null;
@@ -83,14 +81,12 @@ public class DividaDAO {
 
         } catch(SQLException e) {
 
-            JOptionPane.showMessageDialog(null,"erro " + e.getMessage());
-
             if(conn != null){
 
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                     throw new clExceptions("erro " + e.getMessage());
                 }
             }
         } finally {
@@ -100,7 +96,7 @@ public class DividaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
@@ -108,14 +104,14 @@ public class DividaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
     }
 
     
-     public void atualizar(clDivida divida) {
+     public void atualizar(clDivida divida) throws clExceptions {
         Connection conn = null;
         ConexaoDAO conex = new ConexaoDAO();
         PreparedStatement ps = null;
@@ -136,13 +132,12 @@ public class DividaDAO {
             
               
         } catch(SQLException e) {
-            JOptionPane.showMessageDialog(null,"erro ao atualizar!" );
-
+            
             if(conn != null){
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
 
@@ -152,21 +147,21 @@ public class DividaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
     } 
      
      //return true se existe, return false se não existe
-      public boolean verificaDivida(int iCodigo)
+      public boolean verificaDivida(int iCodigo) throws clExceptions
       {
           Connection conn = null;
         PreparedStatement ps = null;
@@ -186,27 +181,27 @@ public class DividaDAO {
             
             
         } catch(SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            throw new clExceptions("erro " + e.getMessage());
         } finally {
             if( ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
         return resultado;
       }
     
-    public clDivida getclDivida(clDivida retorno) {
+    public clDivida getDivida(int codigo) throws clExceptions{
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -214,7 +209,7 @@ public class DividaDAO {
             String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
             
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, retorno.getiCod_divida());
+            ps.setInt(1, codigo);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 clDivida newp = new clDivida();
@@ -227,20 +222,20 @@ public class DividaDAO {
                 return newp;
             }
         } catch(SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            throw new clExceptions("erro " + e.getMessage());
         } finally {
             if( ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }

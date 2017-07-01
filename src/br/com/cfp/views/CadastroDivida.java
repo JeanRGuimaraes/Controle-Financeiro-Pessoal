@@ -72,7 +72,36 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(botoes);
         btnExcluir.addActionListener(botoes);
         btnLimpar.addActionListener(botoes);
+        btnPesquisar.addActionListener(botoes);
         
+    }
+    
+    public int getCodDivida() throws clExceptions
+    {
+        int cod;
+        try {
+            cod = Integer.parseInt(txtCodigo.getText());
+            return cod;
+        } catch (NumberFormatException ex) {
+            throw new clExceptions("Valor de Código invalido");
+        }
+    }
+    
+    public void setDivida(clDivida divida) throws clExceptions
+    {
+        if(divida != null)
+        {
+            txtCodigo.setText(Integer.toString(divida.getiCod_divida()));
+            txtDescricao.setText(divida.getStrDescricao());
+            txtValor.setText(Float.toString(divida.getfValor()));
+            txtmPeriodoInicial.setText(divida.getStrPeriodoInicial());
+            txtmPeriodoFinal.setText(divida.getStrPeriodoFinal());
+            txtStatus.setText(divida.getStrStatus());
+        }else
+        {
+            limparCampos();
+            throw new clExceptions("Divida não encontrada");
+        }
     }
 
     /**
@@ -101,6 +130,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtmPeriodoFinal = new javax.swing.JFormattedTextField();
         txtCodigo = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cadastro de Dívida");
@@ -149,6 +179,8 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        btnPesquisar.setText("Pesquisar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -174,7 +206,11 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtmPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCodigo)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtCodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPesquisar)
+                                .addGap(10, 10, 10))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -193,7 +229,8 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Nome9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,6 +258,8 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar))
                 .addGap(27, 27, 27))
         );
+
+        btnPesquisar.setActionCommand("pesquisar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,6 +317,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel1Nome10;
