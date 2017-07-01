@@ -125,12 +125,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
               //  new TelaPrincipal().setVisible(true);
                 TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
-                tela.abrirLogin();
-                
+                tela.abrirLogin();   
             }
         });
     }
-    
     public void abrirLogin()
     {
           new clLog("Abrindo tela de login");
@@ -143,18 +141,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
               this.dispose();
           }
     }
-    
-
     public CadastroPessoa abrirJanelaCadastroPessoa() {
         new clLog("Abrindo tela de Cadastro de Pessoa");
         CadastroPessoa novo = new CadastroPessoa();
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
-        return novo;
-        
+        return novo;   
     }
-
     public CadastroDivida abrirJanelaCadastroDivida() {
         new clLog("Abrindo tela de Cadastro de Divida");
         CadastroDivida novo = new CadastroDivida();
@@ -183,10 +177,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         novo.setVisible(true);
         
         return novo;
-    }
-    
-    
-    
+    } 
     //Função que centraliza internaljframe
     private void centralizaForm(JInternalFrame frame) {
         Dimension desktopSize = JAreaDeTrabalho.getSize();
@@ -194,7 +185,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
         (desktopSize.height - jInternalFrameSize.height) / 2);
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane JAreaDeTrabalho;
     private javax.swing.JMenu Jmenu2;

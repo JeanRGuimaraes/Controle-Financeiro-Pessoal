@@ -167,14 +167,14 @@ public class RendaDAO {
             }
         }
     } 
-    public clRenda getclPessoa(clRenda retorno) throws clExceptions{
+    public clRenda getclRenda(int codigo) throws clExceptions{
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
             String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIDOFINAL,OBSERVACOES from RENDA where CODIGO=?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, retorno.getiCodigoRenda());
+            ps.setInt(1,codigo);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 clRenda newp = new clRenda();
