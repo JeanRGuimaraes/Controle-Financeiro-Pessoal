@@ -28,7 +28,17 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
          divida.setfValor(Float.parseFloat(numero));
          divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
          divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
-         divida.setStrStatus(txtStatus.getText());
+         
+         if(jcbxStatus.getSelectedItem().toString().equals("Aberto"))
+         {
+             divida.setStrStatus("A");
+         }else if(jcbxStatus.getSelectedItem().toString().equals("Baixado"))
+         {
+             divida.setStrStatus("B");
+         }else
+         {
+              throw new clExceptions("Por favor, escolha um status para a divida");
+         }
         
         
         return divida;
@@ -43,7 +53,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             txtValor.setText("");
             txtmPeriodoInicial.setText("");
             txtmPeriodoFinal.setText("");
-            txtStatus.setText("");
+            jcbxStatus.setSelectedIndex(0);
        
         return divida;
     }
@@ -96,7 +106,19 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             txtValor.setText(Float.toString(divida.getfValor()));
             txtmPeriodoInicial.setText(divida.getStrPeriodoInicial());
             txtmPeriodoFinal.setText(divida.getStrPeriodoFinal());
-            txtStatus.setText(divida.getStrStatus());
+            
+            switch (divida.getStrStatus()) {
+                case "A":
+                    jcbxStatus.setSelectedIndex(1);
+                    break;
+                case "B":
+                    jcbxStatus.setSelectedIndex(2);
+                    break;
+                default:
+                    jcbxStatus.setSelectedIndex(0);
+                    break;
+            }
+            
         }else
         {
             limparCampos();
@@ -122,7 +144,6 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         txtDescricao = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
@@ -131,6 +152,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         txtmPeriodoFinal = new javax.swing.JFormattedTextField();
         txtCodigo = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
+        jcbxStatus = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Cadastro de Dívida");
@@ -145,7 +167,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Status:");
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Salvar");
         btnCadastrar.setActionCommand("cadastrar");
         /*
         */
@@ -181,6 +203,8 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
 
         btnPesquisar.setText("Pesquisar");
 
+        jcbxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Aberto", "Baixado" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -198,30 +222,30 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                            .addComponent(txtStatus)
                             .addComponent(txtValor)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtmPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtmPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(txtCodigo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnPesquisar)
-                                .addGap(10, 10, 10))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jcbxStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                        .addComponent(txtmPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtmPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,15 +272,14 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcbxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExcluir)
                     .addComponent(btnCadastrar)
-                    .addComponent(btnCancelar))
-                .addGap(27, 27, 27))
+                    .addComponent(btnExcluir)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnLimpar))
+                .addGap(16, 16, 16))
         );
 
         btnPesquisar.setActionCommand("pesquisar");
@@ -306,10 +329,6 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
             throw new clExceptions("Campo do Periodo Final Inválido");
         }
 
-        if (txtStatus.getText().equals("")) {
-            throw new clExceptions("Campo de Status Inválido");
-        }
-
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -325,9 +344,9 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1Nome9;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JComboBox<String> jcbxStatus;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
-    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtValor;
     private javax.swing.JFormattedTextField txtmPeriodoFinal;
     private javax.swing.JFormattedTextField txtmPeriodoInicial;
