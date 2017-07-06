@@ -8,8 +8,6 @@ import br.com.cfp.classes.clRenda;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import br.com.cfp.views.CadastroRenda;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class clBotoesRenda implements ActionListener{
@@ -32,11 +30,11 @@ public class clBotoesRenda implements ActionListener{
                     this.renda = this.cadastroRenda.getRenda();
                     if (rendaDAO.verificaRenda(this.renda.getiCodigoRenda())) {
                     rendaDAO.atualizar(this.renda);
-                    JOptionPane.showMessageDialog(null, "Renda Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Renda atuaizada com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Cadastro atualizado com sucesso");
                 } else {
                     rendaDAO.insert(this.renda);
-                    JOptionPane.showMessageDialog(null, "Renda Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Renda Cadastrada com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Cadastro de Renda feito com sucesso");
                 }
             }
@@ -44,7 +42,6 @@ public class clBotoesRenda implements ActionListener{
             {
                 mensagem.getMessage();
                 String erro = mensagem.toString();
-                System.out.println(erro);
                 JOptionPane.showMessageDialog(null, erro.replace("br.com.cfp.classes.clExceptions: ", ""), "CFP - Informa", JOptionPane.WARNING_MESSAGE);
                 
             }
@@ -83,7 +80,7 @@ public class clBotoesRenda implements ActionListener{
              }
             }
          
-              if ("pesquisar".equals(e.getActionCommand())) {
+            if ("pesquisar".equals(e.getActionCommand())) {
             try {
                 this.renda = rendaDAO.getclRenda(cadastroRenda.getCodRenda());
                 cadastroRenda.setRenda(this.renda);

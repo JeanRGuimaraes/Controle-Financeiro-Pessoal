@@ -23,13 +23,8 @@ public class RendaDAO {
             ps.setInt(1,codigo);
             ps.execute();
             conn.commit();
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
 
         } catch(SQLException e) {
-
-          //  System.out.println("ERRO: " + e.getMessage());
-         //   JOptionPane.showMessageDialog(null,"codigo não existe");
-
             
             if (conn != null) {
                 try {
@@ -125,7 +120,6 @@ public class RendaDAO {
         try {
             conn = conex.getConnection();
             String sql = "update RENDA set CODIGO=?,NOME=?, RENDA=?,PERIODOINICIAL=?,PERIODOFINAL=?,OBSERVACOES=? where CODIGO = " + renda.getiCodigoRenda() + "";
-            JOptionPane.showMessageDialog(null, renda.getiCodigoRenda());
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, renda.getiCodigoRenda());
@@ -172,7 +166,7 @@ public class RendaDAO {
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIDOFINAL,OBSERVACOES from RENDA where CODIGO=?";
+            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIODOFINAL,OBSERVACOES from RENDA where CODIGO=?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,codigo);
             ResultSet rs = ps.executeQuery();
@@ -188,20 +182,20 @@ public class RendaDAO {
                 return newp;
             }
         } catch(SQLException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            throw new clExceptions("erro ao atualizar" + e.getMessage());
         } finally {
             if( ps != null) {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro ao atualizar" + ex.getMessage());
                 }
             }
             if(conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    System.out.println("ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro ao atualizar" + ex.getMessage());
                 }
             }
         }
@@ -216,7 +210,7 @@ public class RendaDAO {
 
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIDOFINAL,OBSERVACOES from RENDA where CODIGO=?"; 
+            String sql = "select CODIGO,NOME,RENDA,PERIODOINICIAL,PERIODOFINAL,OBSERVACOES from RENDA where CODIGO=?"; 
 
             ps = conn.prepareStatement(sql);
             ps.setInt(1, iCodigo);

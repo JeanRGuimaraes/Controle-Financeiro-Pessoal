@@ -41,7 +41,6 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jTextArea1Observacao.setText("");
         txtCodigo.setText("");
         txtRenda.setText("");
-        txtStatus.setText("");
 
         return renda;
     }
@@ -68,6 +67,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         btnCancelar.addActionListener(eventos);
         btnExcluir.addActionListener(eventos);
         btnLimpar.addActionListener(eventos);
+        pesquisar.addActionListener(eventos);
 
     }
 
@@ -92,9 +92,6 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
              throw new clExceptions("Preencha Campo de periodo Final");
         }
 
-        if (txtStatus.getText().equals("")) {
-             throw new clExceptions("Por favor o campo de Status");
-        }
          if (jTextArea1Observacao.getText().equals("")) {
              throw new clExceptions("Campo de observações vazia");
         }
@@ -122,12 +119,10 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         jLabel1Nome9 = new javax.swing.JLabel();
         jLabel1Nome10 = new javax.swing.JLabel();
         jLabel1Nome11 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         txtRenda = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
@@ -151,9 +146,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
 
         jLabel1Nome11.setText("Periodo:");
 
-        jLabel16.setText("Status:");
-
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Salvar");
         /*
         */
 
@@ -198,16 +191,11 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         );
         obsLayout.setVerticalGroup(
             obsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
         );
 
         pesquisar.setText("Pesquisar");
         /*
-        pesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarActionPerformed(evt);
-            }
-        });
         */
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -222,14 +210,12 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1Nome10)
                             .addComponent(jLabel1Nome9)
                             .addComponent(jLabel1Nome11)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel16))
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtStatus)
+                            .addComponent(txtNome)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtRenda, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
@@ -237,23 +223,23 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNome)))
+                                            .addComponent(txtPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(obs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                        .addGap(0, 14, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pesquisar)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)))
                 .addContainerGap())
         );
@@ -263,7 +249,9 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pesquisar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1Nome9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,17 +266,11 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
                     .addComponent(txtPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtPeriodoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(39, 39, 39)
                 .addComponent(obs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpar)
-                    .addComponent(pesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpar)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnExcluir)
@@ -302,7 +284,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
         btnLimpar.setActionCommand("limpar");
         obs.getAccessibleContext().setAccessibleName("");
         obs.getAccessibleContext().setAccessibleDescription("");
-        btnCadastrar.setActionCommand("pesquisar");
+        pesquisar.setActionCommand("pesquisar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,10 +301,6 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarActionPerformed
    public int getCodRenda() throws clExceptions {
         int cod;
         try {
@@ -340,6 +318,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
             txtPeriodoInicial.setText(renda.getStrPeriodoInicial());
             txtPeriodoFinal.setText(renda.getStrPeriodoFinal());
             jTextArea1Observacao.setText(renda.getStrDescricao());
+            
         }else
         {
             limparCampos();
@@ -353,7 +332,6 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel1Nome10;
     private javax.swing.JLabel jLabel1Nome11;
     private javax.swing.JLabel jLabel1Nome9;
@@ -368,6 +346,5 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtPeriodoFinal;
     private javax.swing.JFormattedTextField txtPeriodoInicial;
     private javax.swing.JTextField txtRenda;
-    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }
