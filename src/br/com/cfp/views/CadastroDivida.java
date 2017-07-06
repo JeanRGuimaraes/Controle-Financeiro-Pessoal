@@ -15,6 +15,7 @@ import br.com.cfp.eventos.clBotoesDivida;
 public class CadastroDivida extends javax.swing.JInternalFrame {
 
     private clBotoesDivida botoes = new clBotoesDivida(this);
+    private int iCodUsuario;
     
     public clDivida getDivida() throws clExceptions{
         //alimentar o objeto com informacoes do textField
@@ -28,6 +29,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
          divida.setfValor(Float.parseFloat(numero));
          divida.setStrPeriodoInicial(txtmPeriodoInicial.getText());
          divida.setStrPeriodoFinal(txtmPeriodoFinal.getText());
+         divida.setiCodUsuario(iCodUsuario);
          
          if(jcbxStatus.getSelectedItem().toString().equals("Aberto"))
          {
@@ -75,7 +77,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroDivida
      */
-    public CadastroDivida() {
+    public CadastroDivida(int iCodUsuario) {
         initComponents();
         
         btnCadastrar.addActionListener(botoes);
@@ -83,7 +85,7 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         btnExcluir.addActionListener(botoes);
         btnLimpar.addActionListener(botoes);
         btnPesquisar.addActionListener(botoes);
-        
+        this.iCodUsuario = iCodUsuario;
     }
     
     public int getCodDivida() throws clExceptions
@@ -330,6 +332,12 @@ public class CadastroDivida extends javax.swing.JInternalFrame {
         }
 
     }
+
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+     
+     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

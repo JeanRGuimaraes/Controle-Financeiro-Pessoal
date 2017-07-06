@@ -87,6 +87,12 @@ public class TelaLogin extends javax.swing.JDialog {
         return valido;
     }
 
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

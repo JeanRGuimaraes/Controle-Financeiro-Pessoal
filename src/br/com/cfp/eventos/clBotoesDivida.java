@@ -27,7 +27,7 @@ public class clBotoesDivida implements ActionListener {
             try {
 
                 this.divida = this.cadastroDivida.getDivida();
-                if (dividaDao.verificaDivida(this.divida.getiCod_divida())) {
+                if (dividaDao.verificaDivida(this.divida.getiCod_divida(), cadastroDivida.getiCodUsuario())) {
                     dividaDao.atualizar(this.divida);
                     JOptionPane.showMessageDialog(null, "Divida Atualizada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Dívida Atualizada");
@@ -63,7 +63,7 @@ public class clBotoesDivida implements ActionListener {
             if(divida != null)
             {
             try {
-                    dividaDao.delete(this.divida.getiCod_divida());
+                    dividaDao.delete(this.divida.getiCod_divida(), cadastroDivida.getiCodUsuario());
                     this.divida = this.cadastroDivida.apagarDivida(this.divida);
                     JOptionPane.showMessageDialog(null, "Divida Apagada com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Dívida Apagada");
@@ -85,7 +85,7 @@ public class clBotoesDivida implements ActionListener {
 
         if ("pesquisar".equals(e.getActionCommand())) {
             try {
-                this.divida = dividaDao.getDivida(cadastroDivida.getCodDivida());
+                this.divida = dividaDao.getDivida(cadastroDivida.getCodDivida(),cadastroDivida.getiCodUsuario());
                 cadastroDivida.setDivida(divida);
                 JOptionPane.showMessageDialog(null, "Divida encontrada", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Divida encontrada no banco de dados");

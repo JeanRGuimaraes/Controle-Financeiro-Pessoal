@@ -146,11 +146,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
           {
               new clLog("Janela de Login encerrada sem validação, encerrando sistema");
               this.dispose();
+          }else
+          {
+              iCodUsuario = login.getiCodUsuario();
           }
     }
     public CadastroPessoa abrirJanelaCadastroPessoa() {
         new clLog("Abrindo tela de Cadastro de Pessoa");
-        CadastroPessoa novo = new CadastroPessoa();
+        CadastroPessoa novo = new CadastroPessoa(iCodUsuario);
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
@@ -158,7 +161,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     public CadastroDivida abrirJanelaCadastroDivida() {
         new clLog("Abrindo tela de Cadastro de Divida");
-        CadastroDivida novo = new CadastroDivida();
+        CadastroDivida novo = new CadastroDivida(iCodUsuario);
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);
@@ -169,7 +172,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public CadastroRenda abrirJanelaRenda() {
         new clLog("Abrindo tela de Cadastro de Renda");
-        CadastroRenda novo = new CadastroRenda();
+        CadastroRenda novo = new CadastroRenda(iCodUsuario);
         JAreaDeTrabalho.add(novo);
         centralizaForm(novo);
         novo.setVisible(true);

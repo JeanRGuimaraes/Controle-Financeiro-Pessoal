@@ -7,11 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class DividaDAO {
     
-    public void delete(int codigo) throws clExceptions{
+    public void delete(int codigo, int iCodUsuario) throws clExceptions{
 
         ConexaoDAO conex = new ConexaoDAO();
         Connection conn = null;
@@ -19,9 +18,10 @@ public class DividaDAO {
 
         try {
             conn = conex.getConnection();
-            String sql = "delete from DIVIDAS where CODIGO= ?";
+            String sql = "delete from DIVIDAS where CODIGO= ? and COD_USUARIO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1,codigo);
+            ps.setInt(2, iCodUsuario);
             ps.execute();
             conn.commit();
             
@@ -32,7 +32,7 @@ public class DividaDAO {
                 try {
                     conn.rollback();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                     throw new clExceptions("divida não existe");
                 }
             }
         } 
@@ -43,7 +43,7 @@ public class DividaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                     throw new clExceptions("divida não existe");
                 }
             }
             if(conn != null) {
@@ -51,7 +51,7 @@ public class DividaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("codigo não existe");
+                     throw new clExceptions("divida não existe");
                 }
             }
         }
@@ -65,7 +65,7 @@ public class DividaDAO {
         try {
 
             conn = conex.getConnection();
-            String sql = "insert into DIVIDAS (CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS) values(?,?,?,?,?,?)";
+            String sql = "insert into DIVIDAS (CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS,COD_USUARIO) values(?,?,?,?,?,?,?)";
           
             ps = conn.prepareStatement(sql);
             ps.setInt(1, divida.getiCod_divida());
@@ -74,6 +74,7 @@ public class DividaDAO {
             ps.setString(4, divida.getStrPeriodoInicial());
             ps.setString(5, divida.getStrPeriodoFinal());
             ps.setString(6, divida.getStrStatus());
+            ps.setInt(7, divida.getiCodUsuario());
             ps.execute();
             conn.commit();
 
@@ -117,7 +118,7 @@ public class DividaDAO {
         PreparedStatement ps = null;
         try {
             conn = conex.getConnection();
-            String sql = "update DIVIDAS set CODIGO=?, DESCRICAO=?, VALOR=?, DTINICIAL=?, DTFINAL=? ,STATUS=?  where CODIGO = " + divida.getiCod_divida() + "";
+            String sql = "update DIVIDAS set CODIGO=?, DESCRICAO=?, VALOR=?, DTINICIAL=?, DTFINAL=? ,STATUS=?  where CODIGO = " + divida.getiCod_divida() + " and COD_USUARIO = " + divida.getiCodUsuario();
             
             
             ps = conn.prepareStatement(sql);
@@ -161,7 +162,7 @@ public class DividaDAO {
     } 
      
      //return true se existe, return false se não existe
-      public boolean verificaDivida(int iCodigo) throws clExceptions
+      public boolean verificaDivida(int iCodigo, int iCodUsuario) throws clExceptions
       {
           Connection conn = null;
         PreparedStatement ps = null;
@@ -169,10 +170,11 @@ public class DividaDAO {
         
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
+            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=? and COD_USUARIO = ?";
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, iCodigo);
+            ps.setInt(2, iCodUsuario);
             ResultSet rs = ps.executeQuery();
            if(rs.next())
            {
@@ -201,15 +203,16 @@ public class DividaDAO {
         return resultado;
       }
     
-    public clDivida getDivida(int codigo) throws clExceptions{
+    public clDivida getDivida(int codigo, int iCodUsuario) throws clExceptions{
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = ConexaoDAO.getConnection();
-            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
+            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS, COD_USUARIO from DIVIDAS where CODIGO=? and COD_USUARIO=?";
             
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codigo);
+            ps.setInt(2, iCodUsuario);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 clDivida newp = new clDivida();
@@ -219,6 +222,7 @@ public class DividaDAO {
                 newp.setStrPeriodoInicial(rs.getString(4));
                 newp.setStrPeriodoFinal(rs.getString(5));
                 newp.setStrStatus(rs.getString(6));
+                newp.setiCodUsuario(rs.getInt(7));
                 return newp;
             }
         } catch(SQLException e) {

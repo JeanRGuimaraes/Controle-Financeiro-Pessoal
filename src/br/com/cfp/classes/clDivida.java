@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class clDivida {
 
-    private int iCod_divida = 0;
+    private int iCod_divida = 0, iCodUsuario = 0;
     private float fValor = -1;
     private String strDescricao = "", strPeriodoInicial = "", strPeriodoFinal = "", strStatus = "";
 
@@ -56,5 +56,15 @@ public class clDivida {
     public void setStrStatus(String strStatus) {
         this.strStatus = strStatus;
     }
+
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+
+    public void setiCodUsuario(int iCodUsuario) {
+        this.iCodUsuario = iCodUsuario;
+    }
+    
+    
 
 }

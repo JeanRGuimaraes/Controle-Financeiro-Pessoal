@@ -17,8 +17,8 @@ import java.awt.event.ActionListener;
 public class CadastroPessoa extends javax.swing.JInternalFrame {
 
     private ActionListener listener;
-
     private clBotoesPessoa botoes = new clBotoesPessoa(this);
+    private int iCodUsuario;
 
     public clPessoa getPessoa() throws clExceptions {
         //alimentar o objeto com informacoes do textField
@@ -65,13 +65,14 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroPessoa
      */
-    public CadastroPessoa() {
+    public CadastroPessoa(int iCodUsuario) {
         initComponents();
         cadastrar.addActionListener(botoes);
         cancelar.addActionListener(botoes);
         excluir.addActionListener(botoes);
         limpar.addActionListener(botoes);
         jbtnPesquisar.addActionListener(botoes);
+        this.iCodUsuario = iCodUsuario;
     }
 
     public clPessoa apagarPessoa(clPessoa pessoa) {

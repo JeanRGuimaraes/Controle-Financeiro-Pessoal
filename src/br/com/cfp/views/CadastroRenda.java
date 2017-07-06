@@ -16,6 +16,7 @@ import br.com.cfp.eventos.clBotoesRenda;
 public class CadastroRenda extends javax.swing.JInternalFrame {
 
     private clBotoesRenda eventos = new clBotoesRenda(this);
+    private int iCodUsuario;
 
     public clRenda getRenda() throws clExceptions{
         clRenda renda = new clRenda();
@@ -61,13 +62,14 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastroRenda
      */
-    public CadastroRenda() {
+    public CadastroRenda(int iCodUsuario) {
         initComponents();
         btnCadastrar.addActionListener(eventos);
         btnCancelar.addActionListener(eventos);
         btnExcluir.addActionListener(eventos);
         btnLimpar.addActionListener(eventos);
         pesquisar.addActionListener(eventos);
+        this.iCodUsuario = iCodUsuario;
 
     }
 
