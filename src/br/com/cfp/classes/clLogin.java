@@ -1,6 +1,7 @@
 
 package br.com.cfp.classes;
 
+import javax.swing.JOptionPane;
 
 public class clLogin {
     
@@ -8,6 +9,7 @@ public class clLogin {
     private String strUsuario;
     private String strSenha;
     private String strNome;
+    private int iCodigo=0;
 
     public String getStrUsuario() {
         return strUsuario;
@@ -32,5 +34,12 @@ public class clLogin {
      public void setStrNome(String strNome) {
         this.strNome = strNome;
     }
+     
+     public void setiCod_Usuario(int iCodigo) {
+        this.iCodigo = iCodigo;
+    }
+    public int getiCod_Usuario() {
+        return iCodigo;
+    }  
 
 }

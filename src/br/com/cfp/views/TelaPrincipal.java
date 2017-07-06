@@ -25,6 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMICadastroPessoa.addActionListener(eventosBotao);
         jMICadastroRenda.addActionListener(eventosBotao);
         jMICadastroDividas.addActionListener(eventosBotao);
+        jMICadastroUsuario.addActionListener(eventosBotao);
         jMISobre.addActionListener(eventosBotao);
     }
 
@@ -43,6 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMICadastroPessoa = new javax.swing.JMenuItem();
         jMICadastroRenda = new javax.swing.JMenuItem();
         jMICadastroDividas = new javax.swing.JMenuItem();
+        jMICadastroUsuario = new javax.swing.JMenuItem();
         Jmenu2 = new javax.swing.JMenu();
         jMISobre = new javax.swing.JMenuItem();
 
@@ -63,6 +65,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMICadastroDividas.setText("Cadastro de Dividas");
         jMICadastroDividas.setActionCommand("cadastro_dividas");
         jMenu1.add(jMICadastroDividas);
+
+        jMICadastroUsuario.setText("Cadastro de Usuario");
+        jMICadastroUsuario.setActionCommand("cadastro_usuario");
+        jMenu1.add(jMICadastroUsuario);
 
         jMenuBar1.add(jMenu1);
 
@@ -168,6 +174,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         novo.setVisible(true);
         return novo;
     }
+    
+     public CadastroUsuario abrirJanelaCadastroUsuario() {
+        new clLog("Abrindo tela de Cadastro de Usuario");
+        CadastroUsuario novo = new CadastroUsuario();
+        JAreaDeTrabalho.add(novo);
+        centralizaForm(novo);
+        novo.setVisible(true);
+        return novo;
+    }
 
     public Sobre abrirJanelaSobre() {
         new clLog("Abrindo tela Sobre");
@@ -191,6 +206,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMICadastroDividas;
     private javax.swing.JMenuItem jMICadastroPessoa;
     private javax.swing.JMenuItem jMICadastroRenda;
+    private javax.swing.JMenuItem jMICadastroUsuario;
     private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;

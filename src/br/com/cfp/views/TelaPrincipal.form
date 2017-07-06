@@ -33,6 +33,14 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMICadastroDividas.setActionCommand(&quot;cadastro_dividas&quot;);"/>
               </AuxValues>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMICadastroUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastro de Usuario"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jMICadastroUsuario.setActionCommand(&quot;cadastro_usuario&quot;);"/>
+              </AuxValues>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="Jmenu2">

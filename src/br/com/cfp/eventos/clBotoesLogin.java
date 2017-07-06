@@ -1,6 +1,7 @@
 
 package br.com.cfp.eventos;
 
+import br.com.cfp.classes.Dao.UsuarioDAO;
 import br.com.cfp.classes.clLog;
 import br.com.cfp.classes.clLogin;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import br.com.cfp.views.TelaLogin;
 import br.com.cfp.classes.clArquivo;
+import br.com.cfp.classes.clExceptions;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +19,7 @@ public class clBotoesLogin implements ActionListener{
 
      private TelaLogin telaLogin;
      private clLogin login;
+     private UsuarioDAO usuario;
      
      
 
@@ -32,20 +35,24 @@ public class clBotoesLogin implements ActionListener{
         {
  
             login = telaLogin.setaUsuario();
-            if(telaLogin.verificaUsuario(login))
-            {
-                new clLog("Login Valido, Usuario: " + login.getStrUsuario() + ", Liberando Acesso ao sistema.");
-                try {
-                    telaLogin.salvaUsuarioArquivo();
-                } catch (IOException ex) {
-                    Logger.getLogger(clBotoesLogin.class.getName()).log(Level.SEVERE, null, ex);
-                    new clLog("Erro na hora de ler o arquivo " + login.getStrUsuario());
+            try {
+                if(telaLogin.verificaUsuario(login))
+                {
+                    new clLog("Login Valido, Usuario: " + login.getStrUsuario() + ", Liberando Acesso ao sistema.");
+                    try {
+                        telaLogin.salvaUsuarioArquivo();
+                    } catch (IOException ex) {
+                        Logger.getLogger(clBotoesLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        new clLog("Erro na hora de ler o arquivo " + login.getStrUsuario());
+                    }
+                    telaLogin.dispose();
+                }else
+                {
+                    new clLog("Login Inválido");
+                    JOptionPane.showMessageDialog(null, "Login Inválido");
                 }
-                telaLogin.dispose();
-            }else
-            {
-                new clLog("Login Inválido");
-                JOptionPane.showMessageDialog(null, "Login Inválido");
+            } catch (clExceptions ex) {
+                Logger.getLogger(clBotoesLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         

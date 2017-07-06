@@ -3,6 +3,7 @@ package br.com.cfp.eventos;
 import br.com.cfp.views.CadastroDivida;
 import br.com.cfp.views.CadastroPessoa;
 import br.com.cfp.views.CadastroRenda;
+import br.com.cfp.views.CadastroUsuario;
 import br.com.cfp.views.Sobre;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ public class clBotoesTelaPrincipal implements ActionListener {
    private CadastroRenda renda;
    private Sobre sobre;
    private CadastroDivida divida;
+   private CadastroUsuario usuario;
     
     public clBotoesTelaPrincipal(TelaPrincipal telaPrincipal) {
         this.telaPrincipal = telaPrincipal;
@@ -59,6 +61,18 @@ public class clBotoesTelaPrincipal implements ActionListener {
             }else
             {
                 divida = telaPrincipal.abrirJanelaCadastroDivida();
+            }
+        }
+             if ("cadastro_usuario".equals(e.getActionCommand())) {
+            if(usuario != null)
+            {
+                if(!usuario.isVisible())
+                {
+                    usuario = telaPrincipal.abrirJanelaCadastroUsuario();
+                }
+            }else
+            {
+                usuario = telaPrincipal.abrirJanelaCadastroUsuario();
             }
             
             
