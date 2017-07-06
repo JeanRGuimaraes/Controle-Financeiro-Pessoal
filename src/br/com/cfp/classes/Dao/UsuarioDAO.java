@@ -71,10 +71,9 @@ public class UsuarioDAO {
     
 
 
-    public boolean verificaLogin(String iUsuario,String iSenha) throws clExceptions {
+    public clLogin verificaLogin(String iUsuario,String iSenha) throws clExceptions {
         Connection conn = null;
         PreparedStatement ps = null;
-        boolean resultado = false;
 
         try {
             conn = ConexaoDAO.getConnection();
@@ -85,7 +84,13 @@ public class UsuarioDAO {
             ps.setString(2, iSenha);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                resultado = true;
+                clLogin login = new clLogin();
+                login.setiCod_Usuario(rs.getInt(1));
+                login.setStrNome(rs.getString(2));
+                login.setStrUsuario(rs.getString(3));
+                login.setStrSenha(rs.getString(4));
+                
+                return login;
             }
 
         } catch (SQLException ex) {
@@ -106,7 +111,7 @@ public class UsuarioDAO {
                 }
             }
         }
-        return resultado;
+        return null;
     }
     
     public boolean verificaUsuario(int iCodigo) throws clExceptions {

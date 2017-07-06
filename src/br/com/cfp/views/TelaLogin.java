@@ -21,6 +21,7 @@ public class TelaLogin extends javax.swing.JDialog {
     private java.awt.Frame parent;
     private clBotoesLogin botoes = new clBotoesLogin(this);
     private boolean valido = false;
+    private int iCodUsuario;
    /**
      * Creates new form TelaLogin
      */
@@ -60,18 +61,16 @@ public class TelaLogin extends javax.swing.JDialog {
     public boolean verificaUsuario(clLogin login) throws clExceptions
     {
         UsuarioDAO verifica = new UsuarioDAO();
-        
-         System.out.println("Usuario: " + login.getStrUsuario());
-        System.out.println("Senha: " + login.getStrSenha());
-        
-        if(verifica.verificaLogin(login.getStrUsuario(), login.getStrSenha()))
+        login = verifica.verificaLogin(login.getStrUsuario(), login.getStrSenha());
+        if(login != null)
         {
+            this.iCodUsuario = login.getiCod_Usuario();
             this.valido = true;
             return true;
         }else
         {
             this.valido = false;
-             return false;
+            return false;
         }
     }
     

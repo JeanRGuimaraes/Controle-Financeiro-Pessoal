@@ -15,6 +15,7 @@ import javax.swing.JInternalFrame;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     private clBotoesTelaPrincipal eventosBotao = new clBotoesTelaPrincipal(this);
+    private int iCodUsuario;
     /**
      * Creates new form TelaPrincipal
      */
