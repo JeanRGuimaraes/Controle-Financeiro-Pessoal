@@ -34,6 +34,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         pessoa.setStrNome(txtNome.getText());
         pessoa.setStrEmail(txtEmail.getText());
         pessoa.setStrProfissao(txtProfisao.getText());
+        pessoa.setiCodUsuario(iCodUsuario);
 
         if (cbxGenero.getSelectedItem().toString().equals("Masculino")) {
             pessoa.setStrGenero("M");
@@ -108,7 +109,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
                     cbxGenero.setSelectedIndex(1);
                     break;
                 case "F":
-                    cbxGenero.setSelectedIndex(1);
+                    cbxGenero.setSelectedIndex(2);
                     break;
                 default:
                     cbxGenero.setSelectedIndex(0);
@@ -160,7 +161,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Cadastro de Pessoa");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preencha todos compos abaixo:", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preencha todos campos abaixo:", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Lucida Grande", 1, 14))); // NOI18N
 
         jLabel1Nome9.setText("Nome:");
 
@@ -189,7 +190,7 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
 
         jLabel19.setText("Genero:");
 
-        cbxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Masculino", "Femenino" }));
+        cbxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Masculino", "Feminino" }));
 
         cancelar.setText("Cancelar");
         /*
@@ -405,6 +406,11 @@ public class CadastroPessoa extends javax.swing.JInternalFrame {
         }*/
     }
 
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastrar;

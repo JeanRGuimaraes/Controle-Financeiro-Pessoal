@@ -37,7 +37,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="4" position="2" title="Preencha todos compos abaixo:">
+            <TitledBorder justification="4" position="2" title="Preencha todos campos abaixo:">
               <Font PropertyName="font" name="Lucida Grande" size="14" style="1"/>
             </TitledBorder>
           </Border>
@@ -245,7 +245,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Selecionar"/>
                 <StringItem index="1" value="Masculino"/>
-                <StringItem index="2" value="Femenino"/>
+                <StringItem index="2" value="Feminino"/>
               </StringArray>
             </Property>
           </Properties>

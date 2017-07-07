@@ -27,7 +27,7 @@ public class clBotoesPessoa implements ActionListener {
             try {
 
                 this.pessoa = this.cadastroPessoa.getPessoa();
-                if (pessoaDao.verificaPessoa(this.pessoa.getiCodPessoa())) {
+                if (pessoaDao.verificaPessoa(this.pessoa.getiCodPessoa(), this.cadastroPessoa.getiCodUsuario())) {
                     pessoaDao.atualizar(this.pessoa);
                     JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Cadastro atualizado com sucesso");
@@ -49,7 +49,7 @@ public class clBotoesPessoa implements ActionListener {
             if (this.pessoa != null) {
 
                 try {
-                    pessoaDao.delete(this.pessoa.getiCodPessoa());
+                    pessoaDao.delete(this.pessoa.getiCodPessoa(), this.cadastroPessoa.getiCodUsuario());
                     this.pessoa = this.cadastroPessoa.apagarPessoa(this.pessoa);
                     JOptionPane.showMessageDialog(null, "Cadastro apagado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Cadastro apagado Apagada");
@@ -77,7 +77,7 @@ public class clBotoesPessoa implements ActionListener {
 
         if ("pesquisar".equals(e.getActionCommand())) {
             try {
-                this.pessoa = pessoaDao.getPessoa(cadastroPessoa.getCodPessoa());
+                this.pessoa = pessoaDao.getPessoa(cadastroPessoa.getCodPessoa(), cadastroPessoa.getiCodUsuario());
                 cadastroPessoa.setPessoa(this.pessoa);
                 JOptionPane.showMessageDialog(null, "Pessoa encontrada", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                 new clLog("Pessoa encontrada no banco de dados");

@@ -2,7 +2,7 @@ package br.com.cfp.classes;
 
 public class clPessoa {
 
-    private int iCodPessoa = 0, iRg = -1;
+    private int iCodPessoa = 0, iRg = -1, iCodUsuario = 0;
     private String strNome = "", strGenero = "", strEmail = "", strProfissao = "", strTelefone = "", strCpf = "";
    
     public int getiCodPessoa() {
@@ -68,5 +68,15 @@ public class clPessoa {
     public void setStrProfissao(String strProfissao) {
         this.strProfissao = strProfissao;
     }
+
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+
+    public void setiCodUsuario(int iCodUsuario) {
+        this.iCodUsuario = iCodUsuario;
+    }
+    
+    
 
 }
