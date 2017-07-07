@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class clRenda {
     //cod_renda, nome, renda, periodo, observação
 
-    private int iCodigoRenda = 0;
+    private int iCodigoRenda = 0,  iCodUsuario = 0;
     private float fRenda = -1;
     private String strNome = "", strPeriodoInicial = "", strPeriodoFinal = "", strDescricao = "";
     
@@ -57,4 +57,12 @@ public class clRenda {
         this.strDescricao = strDescricao;
     }
 
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+
+    public void setiCodUsuario(int iCodUsuario) {
+        this.iCodUsuario = iCodUsuario;
+    }
+    
 }

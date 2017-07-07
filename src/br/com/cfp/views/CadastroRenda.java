@@ -29,6 +29,7 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
             renda.setStrDescricao(jTextArea1Observacao.getText());
             renda.setiCodigoRenda(Integer.parseInt(txtCodigo.getText()));
             renda.setfRenda(Float.parseFloat(txtRenda.getText()));
+            renda.setiCodUsuario(iCodUsuario);
    
         return renda;
     }
@@ -327,6 +328,12 @@ public class CadastroRenda extends javax.swing.JInternalFrame {
             throw new clExceptions(" renda não encontrada");
         }
     }
+
+    public int getiCodUsuario() {
+        return iCodUsuario;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
