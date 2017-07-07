@@ -1,6 +1,5 @@
 package br.com.cfp.classes;
 
-import javax.swing.JOptionPane;
 
 public class clRenda {
     //cod_renda, nome, renda, periodo, observação
