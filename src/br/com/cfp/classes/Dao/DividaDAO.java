@@ -31,8 +31,9 @@ public class DividaDAO {
             if(conn != null){
                 try {
                     conn.rollback();
+                    throw new clExceptions("erro ao deletar a divida  \nERRO: " + e.getMessage());
                 } catch (SQLException ex) {
-                     throw new clExceptions("divida não existe");
+                     throw new clExceptions("Erro ao buscar a divida: " + ex.getMessage());
                 }
             }
         } 
@@ -43,7 +44,7 @@ public class DividaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("divida não existe");
+                     throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
             if(conn != null) {
@@ -51,7 +52,7 @@ public class DividaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                     throw new clExceptions("divida não existe");
+                     throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
         }
@@ -86,8 +87,9 @@ public class DividaDAO {
 
                 try {
                     conn.rollback();
+                    throw new clExceptions("erro " + e.getMessage());
                 } catch (SQLException ex) {
-                     throw new clExceptions("erro " + e.getMessage());
+                     throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         } finally {
@@ -137,6 +139,7 @@ public class DividaDAO {
             if(conn != null){
                 try {
                     conn.rollback();
+                    throw new clExceptions("erro " + e.getMessage());
                 } catch (SQLException ex) {
                     throw new clExceptions("erro " + ex.getMessage());
                 }

@@ -1,6 +1,7 @@
 package br.com.cfp.classes.Dao;
 
 
+import br.com.cfp.classes.clExceptions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,25 +15,25 @@ public class ConexaoDAO {
     public Statement stm;//preparar e realizar pesquisas no banco de dados
     public ResultSet rs;//armasenar o rasultado de uma pesquisa pasada para o Statement
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws clExceptions{
         Connection conn = null;
         try {
             Class.forName("org.hsqldb.jdbcDriver");
             conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/CFPBD", "sa", "");
         } catch (SQLException e) {
-            System.out.println("Problemas ao conectar no banco de dados");
+            throw new clExceptions("Problemas ao conectar no banco de dados \nERRO: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            System.out.println("O driver não foi configurado corretametne");
+            throw new clExceptions("O driver não foi configurado corretametne \nErro: " + e.getMessage());
         }
 
         return conn;
     }
-     public void executaSQL(String sql) throws Exception {
+     public void executaSQL(String sql) throws clExceptions {
         try {
             stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
             rs = stm.executeQuery(sql);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO DE EXECUÇÃO SQL! \n ERRO " + ex.getMessage());
+            throw new clExceptions("erro de execução no comando sql para o banco de dados \n ERRO: " + ex.getMessage());
         }
     }
 }

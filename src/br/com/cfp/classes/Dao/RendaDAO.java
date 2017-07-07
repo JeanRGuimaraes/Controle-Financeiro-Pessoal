@@ -29,9 +29,9 @@ public class RendaDAO {
             if (conn != null) {
                 try {
                     conn.rollback();
-                    throw new clExceptions("erro " + e.getMessage());
+                    throw new clExceptions("erro ao deletar a renda  \nERRO: " + e.getMessage());
                 } catch (SQLException ex) {
-                    throw new clExceptions("Renda não encontrada");
+                    throw new clExceptions("Erro ao deletar a renda: " + ex.getMessage());
                 }
             } else {
                 throw new clExceptions("ERRO: " + e.getMessage());
@@ -43,7 +43,7 @@ public class RendaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    throw new clExceptions("Renda não encontrada");
+                    throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
             if (conn != null) {
@@ -51,7 +51,7 @@ public class RendaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    throw new clExceptions("Renda não encontrada");
+                    throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
         }

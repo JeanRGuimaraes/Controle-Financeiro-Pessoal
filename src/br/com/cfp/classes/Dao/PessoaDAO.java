@@ -29,8 +29,9 @@ public class PessoaDAO {
             if (conn != null) {
                 try {
                     conn.rollback();
+                    throw new clExceptions("erro ao deletar a pessoa  \nERRO: " + e.getMessage());
                 } catch (SQLException ex) {
-                    throw new clExceptions("Pessoa não encontrada");
+                    throw new clExceptions("Erro ao deletar a pessoa: " + ex.getMessage());
                 }
             } else {
                 throw new clExceptions("ERRO: " + e.getMessage());
@@ -42,7 +43,7 @@ public class PessoaDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    throw new clExceptions("Pessoa não encontrada");
+                    throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
             if (conn != null) {
@@ -50,7 +51,7 @@ public class PessoaDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    throw new clExceptions("Pessoa Não encontrada");
+                    throw new clExceptions("Erro ao fechar a conexão com o banco \nERRO: " + ex.getMessage());
                 }
             }
         }
@@ -86,8 +87,9 @@ public class PessoaDAO {
 
                 try {
                     conn.rollback();
-                } catch (SQLException ex) {
                     throw new clExceptions("ERRO: " + e.getMessage());
+                } catch (SQLException ex) {
+                    throw new clExceptions("ERRO: " + ex.getMessage());
                 }
             } else {
                 throw new clExceptions("ERRO: " + e.getMessage());
@@ -138,8 +140,9 @@ public class PessoaDAO {
             if (conn != null) {
                 try {
                     conn.rollback();
+                    throw new clExceptions("ERRO: " + e.getMessage());
                 } catch (SQLException ex) {
-                    throw new clExceptions("erro ao atualizar" + e.getMessage());
+                    throw new clExceptions("erro ao atualizar" + ex.getMessage());
 
                 }
             } else {

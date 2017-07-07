@@ -37,14 +37,13 @@ public class UsuarioDAO {
 
          } catch(SQLException e) {
 
-            JOptionPane.showMessageDialog(null,"erro " + e.getMessage());
-
             if(conn != null){
 
                 try {
                     conn.rollback();
+                    throw new clExceptions("erro " + e.getMessage());
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         } finally {
@@ -54,7 +53,7 @@ public class UsuarioDAO {
                 try {
                     ps.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
             if(conn != null) {
@@ -62,7 +61,7 @@ public class UsuarioDAO {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null,"ERRO: " + ex.getMessage());
+                    throw new clExceptions("erro " + ex.getMessage());
                 }
             }
         }
