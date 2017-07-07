@@ -32,9 +32,16 @@ public class clBotoesPessoa implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
                     new clLog("Cadastro atualizado com sucesso");
                 } else {
-                    pessoaDao.insert(this.pessoa);
-                    JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                    new clLog("Cadastro feito com sucesso");
+                    if(!pessoaDao.verificaCodPessoa(this.pessoa.getiCodPessoa()))
+                    {
+                        pessoaDao.insert(this.pessoa);
+                        JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                        new clLog("Cadastro feito com sucesso");
+                    }else
+                    {
+                        JOptionPane.showMessageDialog(null, "Codigo da pessoa pertence a outro usuario", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                        new clLog("Permissão negada em cadastrar codigo de pessoa pois pertence a outro usuario");
+                    }
                 }
 
             } catch (clExceptions mensagem) {

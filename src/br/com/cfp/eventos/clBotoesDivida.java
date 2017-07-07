@@ -33,9 +33,16 @@ public class clBotoesDivida implements ActionListener {
                     new clLog("Dívida Atualizada");
 
                 } else {
-                    dividaDao.insert(this.divida);
-                    JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
-                    new clLog("Dívida Cadastrada");
+                    if(!dividaDao.verificaCodDivida(this.divida.getiCod_divida()))
+                    {
+                        dividaDao.insert(this.divida);
+                        JOptionPane.showMessageDialog(null, "Divida Cadastrada Com Sucesso", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                        new clLog("Dívida Cadastrada");
+                    }else
+                    {
+                        JOptionPane.showMessageDialog(null, "Codigo da Divida pertence a outro usuario", "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                        new clLog("Permissão negada em cadastrar codigo de divida pois pertence a outro usuario");
+                    }
                 }
 
             } catch (clExceptions mensagem) {

@@ -245,6 +245,46 @@ public class DividaDAO {
         }
         return null;
     }
+    
+      public boolean verificaCodDivida(int iCodigo) throws clExceptions
+      {
+          Connection conn = null;
+        PreparedStatement ps = null;
+        boolean resultado = false;
+        
+        try {
+            conn = ConexaoDAO.getConnection();
+            String sql = " select CODIGO,DESCRICAO,VALOR,DTINICIAL,DTFINAL,STATUS from DIVIDAS where CODIGO=?";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, iCodigo);
+            ResultSet rs = ps.executeQuery();
+           if(rs.next())
+           {
+               resultado = true;
+           }
+            
+            
+        } catch(SQLException e) {
+            throw new clExceptions("erro " + e.getMessage());
+        } finally {
+            if( ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    throw new clExceptions("erro " + ex.getMessage());
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    throw new clExceptions("erro " + ex.getMessage());
+                }
+            }
+        }
+        return resultado;
+      }
   
     }
       
