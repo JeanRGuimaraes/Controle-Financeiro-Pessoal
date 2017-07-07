@@ -58,21 +58,7 @@ public class TelaLogin extends javax.swing.JDialog {
         return login;
     }
     
-    public boolean verificaUsuario(clLogin login) throws clExceptions
-    {
-        UsuarioDAO verifica = new UsuarioDAO();
-        login = verifica.verificaLogin(login.getStrUsuario(), login.getStrSenha());
-        if(login != null)
-        {
-            this.iCodUsuario = login.getiCod_Usuario();
-            this.valido = true;
-            return true;
-        }else
-        {
-            this.valido = false;
-            return false;
-        }
-    }
+
     
     public void encerrarPrograma()
     {
@@ -89,6 +75,14 @@ public class TelaLogin extends javax.swing.JDialog {
 
     public int getiCodUsuario() {
         return iCodUsuario;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+
+    public void setiCodUsuario(int iCodUsuario) {
+        this.iCodUsuario = iCodUsuario;
     }
     
     

@@ -19,7 +19,7 @@ public class clBotoesLogin implements ActionListener{
 
      private TelaLogin telaLogin;
      private clLogin login;
-     private UsuarioDAO usuario;
+     private UsuarioDAO usuario = new UsuarioDAO();
      
      
 
@@ -36,8 +36,12 @@ public class clBotoesLogin implements ActionListener{
  
             login = telaLogin.setaUsuario();
             try {
-                if(telaLogin.verificaUsuario(login))
+                login = usuario.verificaLogin(login.getStrUsuario(), login.getStrSenha());
+                
+                if(login != null)
                 {
+                    this.telaLogin.setValido(true);
+                    this.telaLogin.setiCodUsuario(login.getiCod_Usuario());
                     new clLog("Login Valido, Usuario: " + login.getStrUsuario() + ", Liberando Acesso ao sistema.");
                     try {
                         telaLogin.salvaUsuarioArquivo();
@@ -48,11 +52,13 @@ public class clBotoesLogin implements ActionListener{
                     telaLogin.dispose();
                 }else
                 {
+                    this.telaLogin.setValido(false);
                     new clLog("Login Inválido");
                     JOptionPane.showMessageDialog(null, "Login Inválido");
                 }
             } catch (clExceptions ex) {
-                Logger.getLogger(clBotoesLogin.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro de conexão com banco \nErro: " + ex.getMessage(), "CFP - Informa", JOptionPane.INFORMATION_MESSAGE);
+                new clLog("Erro de conexão com banco Erro: " +  ex.getMessage());
             }
         }
         
