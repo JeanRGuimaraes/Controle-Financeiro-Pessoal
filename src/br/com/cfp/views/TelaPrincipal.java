@@ -46,6 +46,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMICadastroRenda = new javax.swing.JMenuItem();
         jMICadastroDividas = new javax.swing.JMenuItem();
         jMICadastroUsuario = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        sair = new javax.swing.JMenuItem();
         Jmenu2 = new javax.swing.JMenu();
         jMISobre = new javax.swing.JMenuItem();
 
@@ -70,6 +72,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMICadastroUsuario.setText("Cadastro de Usuario");
         jMICadastroUsuario.setActionCommand("cadastro_usuario");
         jMenu1.add(jMICadastroUsuario);
+        jMenu1.add(jSeparator1);
+
+        sair.setText("Sair do CFP");
+        /*
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+        */
+        jMenu1.add(sair);
+        sair.setActionCommand("sair");
 
         jMenuBar1.add(jMenu1);
 
@@ -97,6 +111,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,5 +233,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem sair;
     // End of variables declaration//GEN-END:variables
 }

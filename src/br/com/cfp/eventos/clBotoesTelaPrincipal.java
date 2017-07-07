@@ -77,6 +77,9 @@ public class clBotoesTelaPrincipal implements ActionListener {
             
             
         }
+           if ("sair".equals(e.getActionCommand())) {
+            System.exit(0);
+           }   
 
         if ("sobre".equals(e.getActionCommand())) {
             if(sobre != null)
