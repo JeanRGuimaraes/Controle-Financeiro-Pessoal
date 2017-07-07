@@ -44,3 +44,6 @@ NOME VARCHAR(20),
 USUARIO VARCHAR(15),
 SENHA VARCHAR(15),
 PRIMARY KEY(CODIGO));
+
+
+insert into usuario values(1,'Admin','Admin','123')
